@@ -4,7 +4,11 @@ require 'bundler/setup'
 require 'csv_converter'
 require 'byebug'
 
+Dir['./spec/support/**/*.rb'].each { |f| require f }
+
 RSpec.configure do |config|
+  config.include CSVConverter::Helpers
+
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
 

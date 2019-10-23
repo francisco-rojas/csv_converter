@@ -1,0 +1,94 @@
+truthy_values: &default_truthy_values
+  - "Yes"
+  - "YES"
+  - "Y"
+  - "y"
+
+empty_values: &default_empty_values
+  - "NA"
+  - "na"
+  - "N/A"
+  - "n/a"
+
+mappings:
+  sale:
+    region:
+      header: Sales Region
+      converters:
+        CSVConverter::String:
+    country:
+      header: Sales Country
+      converters:
+        CSVConverter::String:
+    completed:
+      header: Sale Completed
+      converters:
+        CSVConverter::Boolean:
+          truthy_values: *default_truthy_values
+    notes:
+      header: Sale Notes
+      converters:
+        CSVConverter::String:
+          empty_values: *default_empty_values
+    channel:
+      header: Sale Channel
+      converters:
+        CSVConverter::String:
+  item:
+    type:
+      header: Item Type
+      converters:
+        CSVConverter::String:
+          default: Article
+    code:
+      header: Item Code
+      converters:
+        CSVConverter::String:
+    description:
+      header: Item Description
+      converters:
+        CSVConverter::String:
+  order:
+    priority:
+      header: Order Priority
+      converters:
+        CSVConverter::String:
+        CSVConverter::Uppercase:
+    date:
+      header: Order Date (mm/dd/yy)
+      converters:
+        CSVConverter::Date:
+          format: "%m/%d/%y"
+    number:
+      header: "Order #"
+      converters:
+        CSVConverter::String:
+    shipping_date:
+      header: Order Ship Date
+      converters:
+        CSVConverter::Date:
+          format: "%m/%d/%y"
+    units_sold:
+      header: Order Units Sold
+      converters:
+        CSVConverter::Integer:
+    unit_price:
+      header: Order Unit Price
+      converters:
+        CSVConverter::BigDecimal:
+    unit_cost:
+      header: Order Unit Cost
+      converters:
+        CSVConverter::BigDecimal:
+    total_revenue:
+      header: Total Revenue
+      converters:
+        CSVConverter::BigDecimal:
+    total_cost:
+      header: Total Cost
+      converters:
+        CSVConverter::BigDecimal:
+    total_profit:
+      header: Total Profit
+      converters:
+        CSVConverter::BigDecimal:
