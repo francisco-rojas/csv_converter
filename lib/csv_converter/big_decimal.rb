@@ -6,5 +6,15 @@ module CSVConverter
     def process
       data
     end
+
+    def process!
+      data
+    end
+
+    private
+
+    def nullable_object
+
+    end
   end
 end

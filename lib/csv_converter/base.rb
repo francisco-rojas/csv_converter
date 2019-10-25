@@ -12,6 +12,10 @@ module CSVConverter
       raise NotImplementedError
     end
 
+    def process!
+      raise NotImplementedError
+    end
+
     def data
       @data ||= begin
         return raw_data if raw_data.present? && !empty_value?
