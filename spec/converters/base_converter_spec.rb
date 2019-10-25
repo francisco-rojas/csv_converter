@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe CSVConverter::Base do
-  class SampleConverter < CSVConverter::Base
+RSpec.describe CSVConverter::Converters::BaseConverter do
+  class SampleConverter < described_class
     def process
       data
     end

@@ -15,80 +15,80 @@ mappings:
     region:
       header: Sales Region
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
     country:
       header: Sales Country
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
     completed:
       header: Sale Completed
       converters:
-        CSVConverter::Boolean:
+        CSVConverter::Converters::BooleanConverter:
           truthy_values: *default_truthy_values
     notes:
       header: Sale Notes
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
           empty_values: *default_empty_values
     channel:
       header: Sale Channel
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
   item:
     type:
       header: Item Type
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
           default: Article
     code:
       header: Item Code
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
     description:
       header: Item Description
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
   order:
     priority:
       header: Order Priority
       converters:
-        CSVConverter::String:
-        CSVConverter::Uppercase:
+        CSVConverter::Converters::StringConverter:
+        CSVConverter::Converters::UppercaseConverter:
     date:
       header: Order Date (mm/dd/yy)
       converters:
-        CSVConverter::Date:
+        CSVConverter::Converters::DateConverter:
           format: "%m/%d/%y"
     number:
       header: "Order #"
       converters:
-        CSVConverter::String:
+        CSVConverter::Converters::StringConverter:
     shipping_date:
       header: Order Ship Date
       converters:
-        CSVConverter::Date:
+        CSVConverter::Converters::DateConverter:
           format: "%m/%d/%y"
     units_sold:
       header: Order Units Sold
       converters:
-        CSVConverter::Integer:
+        CSVConverter::Converters::IntegerConverter:
     unit_price:
       header: Order Unit Price
       converters:
-        CSVConverter::BigDecimal:
+        CSVConverter::Converters::BigDecimalConverter:
     unit_cost:
       header: Order Unit Cost
       converters:
-        CSVConverter::BigDecimal:
+        CSVConverter::Converters::BigDecimalConverter:
     total_revenue:
       header: Total Revenue
       converters:
-        CSVConverter::BigDecimal:
+        CSVConverter::Converters::BigDecimalConverter:
     total_cost:
       header: Total Cost
       converters:
-        CSVConverter::BigDecimal:
+        CSVConverter::Converters::BigDecimalConverter:
     total_profit:
       header: Total Profit
       converters:
-        CSVConverter::BigDecimal:
+        CSVConverter::Converters::BigDecimalConverter:

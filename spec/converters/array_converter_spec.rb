@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CSVConverter::Array do
+RSpec.describe CSVConverter::Converters::ArrayConverter do
   describe '#process' do
     describe 'when separator provided' do
       subject { described_class.new('item1, item2, item3', separator: ',') }

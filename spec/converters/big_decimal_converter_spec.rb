@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CSVConverter::BigDecimal do
+RSpec.describe CSVConverter::Converters::BigDecimalConverter do
   describe '#process' do
     describe 'when valid string number provided' do
       subject { described_class.new("1234.5678") }
