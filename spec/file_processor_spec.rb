@@ -12,7 +12,6 @@ RSpec.describe CSVConverter::FileProcessor do
     let(:csv_file_path) { file_fixture('sales.csv') }
     let(:csv_filename) { csv_file_path.basename.to_s }
     let(:csv_rows) { CSV.read(csv_file_path, headers: true) }
-
     subject { described_class.new(csv_filename, csv_rows, mappings) }
     let(:processed_file) { subject.process }
     let(:processed_row) { processed_file.first }

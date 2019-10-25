@@ -13,14 +13,12 @@ RSpec.describe CSVConverter::Base do
 
   describe '#process' do
     describe 'when options[:empty_values] provided' do
-      let(:mappings) do
-        {
-          options: { empty_values: %w[N/A] }
-        }
+      let(:options) do
+        { empty_values: %w[N/A] }
       end
 
       context 'when data is in options[:empty_values]' do
-        subject { SampleConverter.new('N/A', mappings) }
+        subject { SampleConverter.new('N/A', options) }
 
         it 'returns the nullable object' do
           expect(subject.process).to eq 'nullable value'
@@ -28,7 +26,7 @@ RSpec.describe CSVConverter::Base do
       end
 
       context 'when data is nil' do
-        subject { SampleConverter.new(nil, mappings) }
+        subject { SampleConverter.new(nil, options) }
 
         it 'returns the nullable object' do
           expect(subject.process).to eq 'nullable value'
@@ -36,13 +34,13 @@ RSpec.describe CSVConverter::Base do
       end
     end
 
-    describe 'when no mappings provided' do
-      let(:mappings) do
+    describe 'when no options provided' do
+      let(:options) do
         {}
       end
 
       context 'when data is N/A' do
-        subject { SampleConverter.new('N/A', mappings) }
+        subject { SampleConverter.new('N/A', options) }
 
         it 'returns the raw value' do
           expect(subject.process).to eq 'N/A'
@@ -50,7 +48,7 @@ RSpec.describe CSVConverter::Base do
       end
 
       context 'when data is nil' do
-        subject { SampleConverter.new(nil, mappings) }
+        subject { SampleConverter.new(nil, options) }
 
         it 'returns the nullable object' do
           expect(subject.process).to eq 'nullable value'
@@ -58,7 +56,7 @@ RSpec.describe CSVConverter::Base do
       end
 
       context 'when empty string provided' do
-        subject { SampleConverter.new('', mappings) }
+        subject { SampleConverter.new('', options) }
 
         it 'returns the nullable object' do
           expect(subject.process).to eq 'nullable value'
@@ -67,14 +65,12 @@ RSpec.describe CSVConverter::Base do
     end
 
     describe 'when options[:defaults] provided' do
-      let(:mappings) do
-        {
-          options: { defaults: 'LoremIpsum' }
-        }
+      let(:options) do
+        { defaults: 'LoremIpsum' }
       end
 
       context 'when nil object provided' do
-        subject { SampleConverter.new(nil, mappings) }
+        subject { SampleConverter.new(nil, options) }
 
         it 'returns the defaults' do
           expect(subject.process).to eq 'LoremIpsum'
@@ -82,7 +78,7 @@ RSpec.describe CSVConverter::Base do
       end
 
       context 'when empty string provided' do
-        subject { SampleConverter.new('', mappings) }
+        subject { SampleConverter.new('', options) }
 
         it 'returns the defaults' do
           expect(subject.process).to eq 'LoremIpsum'
