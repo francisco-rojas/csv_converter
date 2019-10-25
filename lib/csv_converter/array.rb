@@ -6,7 +6,7 @@ module CSVConverter
     def process
       process!
     rescue CSVConverter::Error
-      [data]
+      nullable_object
     end
 
     def process!

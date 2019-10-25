@@ -62,11 +62,11 @@ RSpec.describe CSVConverter::FileProcessor do
           number: '686800706',
           shipping_date: '10/31/14',
           units_sold: '8446',
-          unit_price: '437.2',
-          unit_cost: '263.33',
-          total_revenue: '3692591.2',
-          total_cost: '2224085.18',
-          total_profit: '1468506.02'
+          unit_price: 437.2,
+          unit_cost: 263.33,
+          total_revenue: 3692591.2,
+          total_cost: 2224085.18,
+          total_profit: 1468506.02
         }
       end
 

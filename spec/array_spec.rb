@@ -14,7 +14,7 @@ RSpec.describe CSVConverter::Array do
       subject { described_class.new('item1, item2, item3') }
 
       it 'wraps the data in an array' do
-        expect(subject.process).to eq ['item1, item2, item3']
+        expect(subject.process).to eq []
       end
     end
   end
