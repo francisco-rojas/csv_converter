@@ -33,7 +33,7 @@ RSpec.describe CSVConverter::Converters::ArrayConverter do
 
       it 'raises an error' do
         expect { subject.process! }.to raise_error(CSVConverter::Error,
-          'a `separator` must be provided in order to split the string')
+                                                   'a `separator` must be provided in order to split the string')
       end
     end
   end

@@ -5,7 +5,15 @@ module CSVConverter
     # Converts a string into a boolean
     class BooleanConverter < BaseConverter
       def process
-        data
+        process!
+      rescue CSVConverter::Error
+        nullable_object
+      end
+
+      def process!
+        return options[:truthy_values].include?(data) if options[:truthy_values].present?
+
+        raise CSVConverter::Error, 'no truthy values list provided to cast the provided data'
       end
 
       private

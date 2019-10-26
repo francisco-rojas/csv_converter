@@ -25,7 +25,7 @@ RSpec.describe CSVConverter::FileProcessor do
         {
           region: 'Middle East and North Africa',
           country: 'Libya',
-          completed: 'Y',
+          completed: true,
           notes: 'LoremIpsum',
           channel: 'Offline'
         }
@@ -64,9 +64,9 @@ RSpec.describe CSVConverter::FileProcessor do
           units_sold: '8446',
           unit_price: 437.2,
           unit_cost: 263.33,
-          total_revenue: 3692591.2,
-          total_cost: 2224085.18,
-          total_profit: 1468506.02
+          total_revenue: 3_692_591.2,
+          total_cost: 2_224_085.18,
+          total_profit: 1_468_506.02
         }
       end
 
