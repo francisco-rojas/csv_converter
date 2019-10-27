@@ -19,7 +19,7 @@ RSpec.describe CSVConverter::Converters::StringConverter do
     end
 
     describe 'when data provided' do
-      subject { described_class.new("lorem ") }
+      subject { described_class.new('lorem ') }
 
       it 'returns data as a string' do
         expect(subject.process).to eq 'lorem'
@@ -45,7 +45,7 @@ RSpec.describe CSVConverter::Converters::StringConverter do
     end
 
     describe 'when data provided' do
-      subject { described_class.new("lorem ") }
+      subject { described_class.new('lorem ') }
 
       it 'returns data as a string' do
         expect(subject.process).to eq 'lorem'

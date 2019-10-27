@@ -12,7 +12,7 @@ module CSVConverter
 
       def process
         process!
-      rescue => e
+      rescue StandardError
         nullable_object
       end
 

@@ -12,6 +12,7 @@ module CSVConverter
 
       def process!
         raise ArgumentError, 'no data provided' if data.blank?
+
         data
       end
 

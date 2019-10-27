@@ -19,7 +19,7 @@ RSpec.describe CSVConverter::Converters::UppercaseConverter do
     end
 
     describe 'when data provided' do
-      subject { described_class.new("lorem ") }
+      subject { described_class.new('lorem ') }
 
       it 'returns data as an uppercase string' do
         expect(subject.process).to eq 'LOREM'
@@ -45,7 +45,7 @@ RSpec.describe CSVConverter::Converters::UppercaseConverter do
     end
 
     describe 'when data provided' do
-      subject { described_class.new("lorem ") }
+      subject { described_class.new('lorem ') }
 
       it 'returns data as an uppercase string' do
         expect(subject.process).to eq 'LOREM'
