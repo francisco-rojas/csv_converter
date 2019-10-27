@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe CSVConverter::Converters::BigDecimalConverter do
+RSpec.describe CSVConverter::Converters::FloatConverter do
   describe '#process' do
     describe 'when valid string number provided' do
       subject { described_class.new('1234.5678') }
 
-      it 'converts the string into a decimal number' do
+      it 'converts the string into a float number' do
         expect(subject.process).to eq 1234.5678
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe CSVConverter::Converters::BigDecimalConverter do
     describe 'when valid string number provided' do
       subject { described_class.new('1234.5678') }
 
-      it 'converts the string into a decimal number' do
+      it 'converts the string into a float number' do
         expect(subject.process!).to eq 1234.5678
       end
     end

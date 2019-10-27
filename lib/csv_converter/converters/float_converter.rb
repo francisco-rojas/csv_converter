@@ -5,7 +5,19 @@ module CSVConverter
     # Converts a string into a float
     class FloatConverter < BaseConverter
       def process
-        data
+        process!
+      rescue ArgumentError
+        nullable_object
+      end
+
+      def process!
+        Float(data)
+      end
+
+      private
+
+      def nullable_object
+        nil
       end
     end
   end

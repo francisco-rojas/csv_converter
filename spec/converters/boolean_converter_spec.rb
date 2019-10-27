@@ -44,7 +44,7 @@ RSpec.describe CSVConverter::Converters::BooleanConverter do
         %w[TRUE true].each do |truthy_value|
           subject = described_class.new(truthy_value)
           expect { subject.process! }.to raise_error(CSVConverter::Error,
-                                                     'no truthy values list provided to cast the provided data')
+                                                     'no `truthy_values` provided')
         end
       end
     end

@@ -7,7 +7,7 @@ module CSVConverter
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        raise ArgumentError, 'You must specify a `date_format`' if options[:date_format].blank?
+        raise ArgumentError, 'no `date_format` provided' if options[:date_format].blank?
       end
 
       def process

@@ -61,7 +61,7 @@ RSpec.describe CSVConverter::FileProcessor do
           date: Date.strptime('10/18/14', '%m/%d/%y'),
           number: '686800706',
           shipping_date: Date.strptime('10/31/14', '%m/%d/%y'),
-          units_sold: '8446',
+          units_sold: 8446,
           unit_price: 437.2,
           unit_cost: 263.33,
           total_revenue: 3_692_591.2,

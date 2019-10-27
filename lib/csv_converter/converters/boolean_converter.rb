@@ -13,7 +13,7 @@ module CSVConverter
       def process!
         return options[:truthy_values].include?(data) if options[:truthy_values].present?
 
-        raise CSVConverter::Error, 'no truthy values list provided to cast the provided data'
+        raise CSVConverter::Error, 'no `truthy_values` provided'
       end
 
       private

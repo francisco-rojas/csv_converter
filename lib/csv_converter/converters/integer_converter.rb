@@ -5,7 +5,19 @@ module CSVConverter
     # Converts a string into an integer
     class IntegerConverter < BaseConverter
       def process
-        data
+        process!
+      rescue ArgumentError
+        nullable_object
+      end
+
+      def process!
+        Integer(data)
+      end
+
+      private
+
+      def nullable_object
+        nil
       end
     end
   end
