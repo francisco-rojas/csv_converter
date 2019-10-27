@@ -5,7 +5,20 @@ module CSVConverter
     # Converts a string to uppercase
     class UppercaseConverter < BaseConverter
       def process
+        process!.upcase
+      rescue ArgumentError
+        nullable_object
+      end
+
+      def process!
+        raise ArgumentError, 'no data provided' if data.blank?
         data
+      end
+
+      private
+
+      def nullable_object
+        ''
       end
     end
   end
