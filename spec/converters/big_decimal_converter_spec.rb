@@ -14,7 +14,7 @@ RSpec.describe CSVConverter::Converters::BigDecimalConverter do
       subject { described_class.new('ABC') }
 
       it 'returns the nullable_object' do
-        expect(subject.process).to eq 0.0
+        expect(subject.process).to eq nil
       end
     end
   end

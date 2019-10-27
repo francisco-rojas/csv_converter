@@ -19,7 +19,7 @@ module CSVConverter
       private
 
       def nullable_object
-        0.0
+        nil
       end
     end
   end

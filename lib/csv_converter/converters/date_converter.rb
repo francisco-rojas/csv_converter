@@ -13,11 +13,17 @@ module CSVConverter
       def process
         process!
       rescue => e
-        nil
+        nullable_object
       end
 
       def process!
         Date.strptime(data, options[:date_format])
+      end
+
+      private
+
+      def nullable_object
+        nil
       end
     end
   end
