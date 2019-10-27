@@ -17,6 +17,7 @@ require 'csv_converter/converters/float_converter'
 require 'csv_converter/converters/integer_converter'
 require 'csv_converter/converters/string_converter'
 require 'csv_converter/converters/uppercase_converter'
+require 'csv_converter/converters/lowercase_converter'
 require 'csv_converter/file_processor'
 
 module CSVConverter
