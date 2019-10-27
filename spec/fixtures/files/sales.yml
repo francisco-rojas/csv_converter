@@ -58,7 +58,7 @@ mappings:
       header: Order Date (mm/dd/yy)
       converters:
         CSVConverter::Converters::DateConverter:
-          format: "%m/%d/%y"
+          date_format: "%m/%d/%y"
     number:
       header: "Order #"
       converters:
@@ -67,7 +67,7 @@ mappings:
       header: Order Ship Date
       converters:
         CSVConverter::Converters::DateConverter:
-          format: "%m/%d/%y"
+          date_format: "%m/%d/%y"
     units_sold:
       header: Order Units Sold
       converters:

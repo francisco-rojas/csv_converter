@@ -58,9 +58,9 @@ RSpec.describe CSVConverter::FileProcessor do
       let(:order) do
         {
           priority: 'M',
-          date: '10/18/14',
+          date: Date.strptime('10/18/14', '%m/%d/%y'),
           number: '686800706',
-          shipping_date: '10/31/14',
+          shipping_date: Date.strptime('10/31/14', '%m/%d/%y'),
           units_sold: '8446',
           unit_price: 437.2,
           unit_cost: 263.33,

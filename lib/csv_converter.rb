@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 require 'active_support'
 require 'active_support/core_ext/object/blank'
@@ -19,5 +20,4 @@ require 'csv_converter/file_processor'
 
 module CSVConverter
   class Error < StandardError; end
-  # Your code goes here...
 end
