@@ -23,7 +23,7 @@ module CSVConverter
         end.to_h
       end
 
-      # private
+      private
 
       def nullable_object
         {}

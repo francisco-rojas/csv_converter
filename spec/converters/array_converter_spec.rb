@@ -10,18 +10,16 @@ RSpec.describe CSVConverter::Converters::ArrayConverter do
     end
   end
 
-  describe '#process' do
-    describe 'when separator provided' do
+  describe 'when separator provided' do
+    describe '#process' do
       subject { described_class.new('item1, item2, item3', separator: ',') }
 
       it 'splits the string into an array' do
         expect(subject.process).to eq %w[item1 item2 item3]
       end
     end
-  end
 
-  describe '#process!' do
-    describe 'when separator provided' do
+    describe '#process!' do
       subject { described_class.new('item1, item2, item3', separator: ',') }
 
       it 'splits the string into an array' do

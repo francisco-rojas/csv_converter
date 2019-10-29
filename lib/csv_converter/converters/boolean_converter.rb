@@ -4,6 +4,12 @@ module CSVConverter
   module Converters
     # Converts a string into a boolean
     class BooleanConverter < BaseConverter
+      def initialize(raw_data, options = {})
+        super(raw_data, options)
+
+        raise ArgumentError, 'no `truthy_values` provided' if options[:truthy_values].blank?
+      end
+
       def process
         process!
       rescue CSVConverter::Error
@@ -11,9 +17,7 @@ module CSVConverter
       end
 
       def process!
-        return options[:truthy_values].include?(data) if options[:truthy_values].present?
-
-        raise CSVConverter::Error, 'no `truthy_values` provided'
+        options[:truthy_values].include?(data)
       end
 
       private
