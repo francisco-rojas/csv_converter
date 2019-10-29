@@ -4,6 +4,12 @@ module CSVConverter
   module Converters
     # Converts a string separated by a given char into an array of strings
     class ArrayConverter < BaseConverter
+      def initialize(raw_data, options = {})
+        super(raw_data, options)
+
+        raise ArgumentError, 'no `separator` provided' if options[:separator].blank?
+      end
+
       def process
         process!
       rescue CSVConverter::Error
@@ -11,9 +17,7 @@ module CSVConverter
       end
 
       def process!
-        return data.gsub(' ', '').split(options[:separator]) if options[:separator].present?
-
-        raise CSVConverter::Error, 'a `separator` must be provided in order to split the string'
+        data.gsub(' ', '').split(options[:separator])
       end
 
       private

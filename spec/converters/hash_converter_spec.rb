@@ -61,12 +61,11 @@ RSpec.describe CSVConverter::Converters::HashConverter do
 
       let(:result) do
         {
-          "key1" => "value1",
-          "key2" => "value2",
-          "key3" => "value3"
+          'key1' => 'value1',
+          'key2' => 'value2',
+          'key3' => 'value3'
         }
       end
-
 
       describe '#process' do
         it 'splits turns the string into a hash' do

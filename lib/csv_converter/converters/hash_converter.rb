@@ -12,9 +12,9 @@ module CSVConverter
       end
 
       def process
-          process!
-        rescue ArgumentError
-          nullable_object
+        process!
+      rescue ArgumentError
+        nullable_object
       end
 
       def process!
