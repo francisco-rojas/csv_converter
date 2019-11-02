@@ -37,9 +37,16 @@ module CSVConverter
 
       return data if converters.blank?
 
-      converters.inject(data) do |d, (klass, args)|
-        klass.to_s.constantize.new(d, args).process
+      converters.inject(data) do |d, (target_klass, args)|
+        converter(target_klass).new(d, args).process
       end
+    end
+
+    def converter(target_klass)
+      target_klass = target_klass.to_s
+
+      target_klass = CSVConverter::ALIASES[target_klass] if CSVConverter::ALIASES.keys.include?(target_klass)
+      target_klass.constantize
     end
 
     def col_value(row, csv_header)

@@ -23,4 +23,17 @@ require 'csv_converter/file_processor'
 
 module CSVConverter
   class Error < StandardError; end
+
+  ALIASES = {
+    array: 'CSVConverter::Converters::ArrayConverter',
+    boolean: 'CSVConverter::Converters::BooleanConverter',
+    date: 'CSVConverter::Converters::DateConverter',
+    decimal: 'CSVConverter::Converters::BigDecimalConverter',
+    float: 'CSVConverter::Converters::FloatConverter',
+    hash: 'CSVConverter::Converters::HashConverter',
+    integer: 'CSVConverter::Converters::IntegerConverter',
+    lowercase: 'CSVConverter::Converters::LowercaseConverter',
+    string: 'CSVConverter::Converters::StringConverter',
+    uppercase: 'CSVConverter::Converters::UppercaseConverter'
+  }.with_indifferent_access
 end

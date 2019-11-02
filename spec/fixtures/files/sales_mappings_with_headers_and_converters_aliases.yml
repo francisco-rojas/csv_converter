@@ -1,0 +1,94 @@
+truthy_values: &default_truthy_values
+  - "Yes"
+  - "YES"
+  - "Y"
+  - "y"
+
+empty_values: &default_empty_values
+  - "NA"
+  - "na"
+  - "N/A"
+  - "n/a"
+
+mappings:
+  sale:
+    region:
+      header: Sales Region
+      converters:
+        string:
+    country:
+      header: Sales Country
+      converters:
+        string:
+    completed:
+      header: Sale Completed
+      converters:
+        boolean:
+          truthy_values: *default_truthy_values
+    notes:
+      header: Sale Notes
+      converters:
+        string:
+          empty_values: *default_empty_values
+    channel:
+      header: Sale Channel
+      converters:
+        string:
+  item:
+    type:
+      header: Item Type
+      converters:
+        string:
+          default: Article
+    code:
+      header: Item Code
+      converters:
+        string:
+    description:
+      header: Item Description
+      converters:
+        string:
+  order:
+    priority:
+      header: Order Priority
+      converters:
+        string:
+        uppercase:
+    date:
+      header: Order Date (mm/dd/yy)
+      converters:
+        date:
+          date_format: "%m/%d/%y"
+    number:
+      header: "Order #"
+      converters:
+        string:
+    shipping_date:
+      header: Order Ship Date
+      converters:
+        date:
+          date_format: "%m/%d/%y"
+    units_sold:
+      header: Order Units Sold
+      converters:
+        integer:
+    unit_price:
+      header: Order Unit Price
+      converters:
+        decimal:
+    unit_cost:
+      header: Order Unit Cost
+      converters:
+        decimal:
+    total_revenue:
+      header: Total Revenue
+      converters:
+        decimal:
+    total_cost:
+      header: Total Cost
+      converters:
+        decimal:
+    total_profit:
+      header: Total Profit
+      converters:
+        decimal:
