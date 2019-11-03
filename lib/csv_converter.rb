@@ -20,6 +20,8 @@ require 'csv_converter/converters/string_converter'
 require 'csv_converter/converters/uppercase_converter'
 require 'csv_converter/converters/lowercase_converter'
 require 'csv_converter/file_processor'
+require 'csv_converter/file_with_headers_processor'
+require 'csv_converter/file_without_headers_processor'
 
 module CSVConverter
   class Error < StandardError; end
