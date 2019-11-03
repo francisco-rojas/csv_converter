@@ -1,0 +1,94 @@
+truthy_values: &default_truthy_values
+  - "Yes"
+  - "YES"
+  - "Y"
+  - "y"
+
+empty_values: &default_empty_values
+  - "NA"
+  - "na"
+  - "N/A"
+  - "n/a"
+
+mappings:
+  sale:
+    region:
+      header: 0
+      converters:
+        CSVConverter::Converters::StringConverter:
+    country:
+      header: 1
+      converters:
+        CSVConverter::Converters::StringConverter:
+    completed:
+      header: 2
+      converters:
+        CSVConverter::Converters::BooleanConverter:
+          truthy_values: *default_truthy_values
+    notes:
+      header: 3
+      converters:
+        CSVConverter::Converters::StringConverter:
+          empty_values: *default_empty_values
+    channel:
+      header: 7
+      converters:
+        CSVConverter::Converters::StringConverter:
+  item:
+    type:
+      header: 4
+      converters:
+        CSVConverter::Converters::StringConverter:
+          default: Article
+    code:
+      header: 5
+      converters:
+        CSVConverter::Converters::StringConverter:
+    description:
+      header: 6
+      converters:
+        CSVConverter::Converters::StringConverter:
+  order:
+    priority:
+      header: 8
+      converters:
+        CSVConverter::Converters::StringConverter:
+        CSVConverter::Converters::UppercaseConverter:
+    date:
+      header: 9
+      converters:
+        CSVConverter::Converters::DateConverter:
+          date_format: "%m/%d/%y"
+    number:
+      header: 10
+      converters:
+        CSVConverter::Converters::StringConverter:
+    shipping_date:
+      header: 11
+      converters:
+        CSVConverter::Converters::DateConverter:
+          date_format: "%m/%d/%y"
+    units_sold:
+      header: 12
+      converters:
+        CSVConverter::Converters::IntegerConverter:
+    unit_price:
+      header: 13
+      converters:
+        CSVConverter::Converters::BigDecimalConverter:
+    unit_cost:
+      header: 14
+      converters:
+        CSVConverter::Converters::BigDecimalConverter:
+    total_revenue:
+      header: 15
+      converters:
+        CSVConverter::Converters::BigDecimalConverter:
+    total_cost:
+      header: 16
+      converters:
+        CSVConverter::Converters::BigDecimalConverter:
+    total_profit:
+      header: 17
+      converters:
+        CSVConverter::Converters::BigDecimalConverter:
