@@ -37,4 +37,16 @@ module CSVConverter
     string: 'CSVConverter::Converters::StringConverter',
     uppercase: 'CSVConverter::Converters::UppercaseConverter'
   }.with_indifferent_access
+
+  def self.aliases
+    @aliases || ALIASES
+  end
+
+  def self.add_alias(new_alias, klass)
+    @aliases = aliases.merge({ new_alias.to_sym => klass.to_s })
+  end
+
+  def self.add_aliases(new_aliases)
+    @aliases = aliases.merge(new_aliases)
+  end
 end
