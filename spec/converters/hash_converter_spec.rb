@@ -5,8 +5,8 @@ RSpec.describe CSVConverter::Converters::HashConverter do
     subject { described_class.new('key1: value1, key2: value2, key3: value3', key_value_separator: ':') }
 
     it 'raises an error' do
-      expect { subject.process! }.to raise_error(ArgumentError,
-                                                 'no `item_separator` provided')
+      expect { subject.call! }.to raise_error(ArgumentError,
+                                              'no `item_separator` provided')
     end
   end
 
@@ -14,8 +14,8 @@ RSpec.describe CSVConverter::Converters::HashConverter do
     subject { described_class.new('key1: value1, key2: value2, key3: value3', item_separator: ',') }
 
     it 'raises an error' do
-      expect { subject.process! }.to raise_error(ArgumentError,
-                                                 'no `key_value_separator` provided')
+      expect { subject.call! }.to raise_error(ArgumentError,
+                                              'no `key_value_separator` provided')
     end
   end
 
@@ -29,15 +29,15 @@ RSpec.describe CSVConverter::Converters::HashConverter do
         )
       end
 
-      describe '#process' do
+      describe '#call' do
         it 'returns the nullable object' do
-          expect(str1.process).to eq({})
+          expect(str1.call).to eq({})
         end
       end
 
-      describe '#process!' do
+      describe '#call!' do
         it 'raises an error' do
-          expect { str1.process! }.to raise_error(ArgumentError)
+          expect { str1.call! }.to raise_error(ArgumentError)
         end
       end
     end
@@ -67,23 +67,23 @@ RSpec.describe CSVConverter::Converters::HashConverter do
         }
       end
 
-      describe '#process' do
+      describe '#call' do
         it 'splits turns the string into a hash' do
-          expect(str1.process).to eq(result)
+          expect(str1.call).to eq(result)
         end
 
         it 'strips keys and values' do
-          expect(str2.process).to eq(result)
+          expect(str2.call).to eq(result)
         end
       end
 
-      describe '#process!' do
+      describe '#call!' do
         it 'splits turns the string into a hash' do
-          expect(str1.process!).to eq(result)
+          expect(str1.call!).to eq(result)
         end
 
         it 'strips keys and values' do
-          expect(str2.process!).to eq(result)
+          expect(str2.call!).to eq(result)
         end
       end
     end

@@ -10,13 +10,13 @@ module CSVConverter
         raise ArgumentError, 'no `truthy_values` provided' if options[:truthy_values].blank?
       end
 
-      def process
-        process!
+      def call
+        call!
       rescue CSVConverter::Error
         nullable_object
       end
 
-      def process!
+      def call!
         options[:truthy_values].include?(data)
       end
 

@@ -8,13 +8,13 @@ module CSVConverter
       @col_mappings = col_mappings
     end
 
-    def process
+    def call
       converters = col_mappings.dig(:converters)
 
       return data if converters.blank?
 
       converters.inject(data) do |d, (target_class, args)|
-        converter(target_class).new(d, args).process
+        converter(target_class).new(d, args).call
       end
     end
 

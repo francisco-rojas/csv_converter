@@ -4,13 +4,13 @@ module CSVConverter
   module Converters
     # Converts a string into an integer
     class IntegerConverter < BaseConverter
-      def process
-        process!
+      def call
+        call!
       rescue ArgumentError
         nullable_object
       end
 
-      def process!
+      def call!
         Integer(data)
       end
 

@@ -11,13 +11,13 @@ module CSVConverter
         raise ArgumentError, 'no `key_value_separator` provided' if options[:key_value_separator].nil?
       end
 
-      def process
-        process!
+      def call
+        call!
       rescue ArgumentError
         nullable_object
       end
 
-      def process!
+      def call!
         data.split(options[:item_separator]).map do |items|
           items.split(options[:key_value_separator]).map(&:strip)
         end.to_h

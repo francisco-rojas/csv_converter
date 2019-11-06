@@ -10,13 +10,13 @@ module CSVConverter
         raise ArgumentError, 'no `separator` provided' if options[:separator].blank?
       end
 
-      def process
-        process!
+      def call
+        call!
       rescue CSVConverter::Error
         nullable_object
       end
 
-      def process!
+      def call!
         data.gsub(' ', '').split(options[:separator])
       end
 

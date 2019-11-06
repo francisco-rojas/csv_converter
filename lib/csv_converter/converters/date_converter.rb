@@ -10,13 +10,13 @@ module CSVConverter
         raise ArgumentError, 'no `date_format` provided' if options[:date_format].blank?
       end
 
-      def process
-        process!
+      def call
+        call!
       rescue StandardError
         nullable_object
       end
 
-      def process!
+      def call!
         Date.strptime(data, options[:date_format])
       end
 

@@ -4,13 +4,13 @@ module CSVConverter
   module Converters
     # Converts a string into a float
     class FloatConverter < BaseConverter
-      def process
-        process!
+      def call
+        call!
       rescue ArgumentError
         nullable_object
       end
 
-      def process!
+      def call!
         Float(data)
       end
 

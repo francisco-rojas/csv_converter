@@ -9,11 +9,11 @@ module CSVConverter
         @options    = options || {}
       end
 
-      def process
+      def call
         raise NotImplementedError
       end
 
-      def process!
+      def call!
         raise NotImplementedError
       end
 

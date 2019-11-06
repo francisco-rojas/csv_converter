@@ -7,31 +7,31 @@ RSpec.describe CSVConverter::Converters::DateConverter do
     end
   end
 
-  describe '#process' do
+  describe '#call' do
     it 'returns nil when parsing date fails' do
       subject = described_class.new('101814', date_format: '%m/%d/%y')
 
-      expect(subject.process).to eq nil
+      expect(subject.call).to eq nil
     end
 
     it 'returns the correct date when parsing date succeeds' do
       subject = described_class.new('10/18/14', date_format: '%m/%d/%y')
 
-      expect(subject.process).to eq Date.strptime('10/18/14', '%m/%d/%y')
+      expect(subject.call).to eq Date.strptime('10/18/14', '%m/%d/%y')
     end
   end
 
-  describe '#process!' do
+  describe '#call!' do
     it 'raises error when date parsing fails' do
       subject = described_class.new('101814', date_format: '%m/%d/%y')
 
-      expect { subject.process! }.to raise_error(ArgumentError, 'invalid date')
+      expect { subject.call! }.to raise_error(ArgumentError, 'invalid date')
     end
 
     it 'returns the correct date when parsing date succeeds' do
       subject = described_class.new('10/18/14', date_format: '%m/%d/%y')
 
-      expect(subject.process!).to eq Date.strptime('10/18/14', '%m/%d/%y')
+      expect(subject.call!).to eq Date.strptime('10/18/14', '%m/%d/%y')
     end
   end
 end

@@ -4,36 +4,12 @@ require 'csv'
 require 'yaml'
 
 RSpec.describe CSVConverter::FileProcessor do
-  [
-    {
-      csv_file: 'sales_with_headers.csv',
-      mappings_file: 'sales_mappings_with_headers_and_converters_names.yml',
-      headers: true
-    },
-    {
-      csv_file: 'sales_with_headers.csv',
-      mappings_file: 'sales_mappings_with_headers_and_converters_aliases.yml',
-      headers: true
-    },
-    {
-      csv_file: 'sales_without_headers.csv',
-      mappings_file: 'sales_mappings_without_headers_and_converters_names.yml',
-      headers: false
-    },
-    {
-      csv_file: 'sales_without_headers.csv',
-      mappings_file: 'sales_mappings_without_headers_and_converters_aliases.yml',
-      headers: false
-    }
-  ].each do |scenario|
-    path = file_fixture(scenario[:mappings_file])
-    mappings = YAML.load_file(path).deep_symbolize_keys[:mappings]
-
+  file_scenarios.each do |scenario|
     let(:csv_file_path) { file_fixture(scenario[:csv_file]) }
     let(:csv_filename) { csv_file_path.basename.to_s }
     let(:csv_rows) { CSV.read(csv_file_path, headers: scenario[:headers]) }
-    subject { described_class.new(csv_filename, csv_rows, mappings) }
-    let(:processed_file) { subject.process }
+    subject { described_class.new(csv_filename, csv_rows, scenario[:config]) }
+    let(:processed_file) { subject.call }
     let(:processed_row) { processed_file.first }
 
     it 'creates one element per row' do

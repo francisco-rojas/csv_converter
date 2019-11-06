@@ -2,7 +2,7 @@
 
 RSpec.describe CSVConverter::Converters::BaseConverter do
   class SampleConverter < described_class
-    def process
+    def call
       data
     end
 
@@ -11,7 +11,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
     end
   end
 
-  describe '#process' do
+  describe '#call' do
     describe 'when options[:empty_values] provided' do
       let(:options) do
         { empty_values: %w[N/A] }
@@ -21,7 +21,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new('N/A', options) }
 
         it 'returns the nullable object' do
-          expect(subject.process).to eq 'nullable value'
+          expect(subject.call).to eq 'nullable value'
         end
       end
 
@@ -29,7 +29,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new(nil, options) }
 
         it 'returns the nullable object' do
-          expect(subject.process).to eq 'nullable value'
+          expect(subject.call).to eq 'nullable value'
         end
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new('N/A', options) }
 
         it 'returns the raw value' do
-          expect(subject.process).to eq 'N/A'
+          expect(subject.call).to eq 'N/A'
         end
       end
 
@@ -51,7 +51,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new(nil, options) }
 
         it 'returns the nullable object' do
-          expect(subject.process).to eq 'nullable value'
+          expect(subject.call).to eq 'nullable value'
         end
       end
 
@@ -59,7 +59,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new('', options) }
 
         it 'returns the nullable object' do
-          expect(subject.process).to eq 'nullable value'
+          expect(subject.call).to eq 'nullable value'
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new(nil, options) }
 
         it 'returns the defaults' do
-          expect(subject.process).to eq 'LoremIpsum'
+          expect(subject.call).to eq 'LoremIpsum'
         end
       end
 
@@ -81,7 +81,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
         subject { SampleConverter.new('', options) }
 
         it 'returns the defaults' do
-          expect(subject.process).to eq 'LoremIpsum'
+          expect(subject.call).to eq 'LoremIpsum'
         end
       end
     end

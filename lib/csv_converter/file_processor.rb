@@ -10,7 +10,7 @@ module CSVConverter
       @column_processor   = column_processor
     end
 
-    def process
+    def call
       rows.map do |row|
         process_rows(row)
       end
@@ -27,7 +27,7 @@ module CSVConverter
 
     def process_cols(row, model_mappings)
       model_mappings.each_with_object({}) do |(target_col, col_mappings), hash|
-        hash[target_col] = column_processor.new(row, col_mappings).process
+        hash[target_col] = column_processor.new(row, col_mappings).call
       end
     end
 

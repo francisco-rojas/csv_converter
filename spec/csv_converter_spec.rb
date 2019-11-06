@@ -12,7 +12,7 @@ RSpec.describe CSVConverter do
 
     it 'adds a new alias' do
       CSVConverter.add_alias(:number, 'CSVConverter::Converters::IntegerConverter')
-      expect(CSVConverter.aliases["number"]).to eq 'CSVConverter::Converters::IntegerConverter'
+      expect(CSVConverter.aliases['number']).to eq 'CSVConverter::Converters::IntegerConverter'
     end
 
     it 'adds a new aliases' do
@@ -20,13 +20,13 @@ RSpec.describe CSVConverter do
         number: 'CSVConverter::Converters::IntegerConverter',
         yes_no: 'CSVConverter::Converters::BooleanConverter'
       )
-      expect(CSVConverter.aliases["number"]).to eq 'CSVConverter::Converters::IntegerConverter'
-      expect(CSVConverter.aliases["yes_no"]).to eq 'CSVConverter::Converters::BooleanConverter'
+      expect(CSVConverter.aliases['number']).to eq 'CSVConverter::Converters::IntegerConverter'
+      expect(CSVConverter.aliases['yes_no']).to eq 'CSVConverter::Converters::BooleanConverter'
     end
 
     it 'overrides existing alias' do
       CSVConverter.add_alias(:integer, 'CSVConverter::Converters::MyInteger')
-      expect(CSVConverter.aliases["integer"]).to eq 'CSVConverter::Converters::MyInteger'
+      expect(CSVConverter.aliases['integer']).to eq 'CSVConverter::Converters::MyInteger'
     end
   end
 end

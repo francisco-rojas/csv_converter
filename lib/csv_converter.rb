@@ -22,6 +22,7 @@ require 'csv_converter/converters/lowercase_converter'
 require 'csv_converter/file_processor'
 require 'csv_converter/column_processor'
 
+# CSVConverter transforms and groups raw data from csv files according to the config provided
 module CSVConverter
   class Error < StandardError; end
 
@@ -43,7 +44,7 @@ module CSVConverter
   end
 
   def self.add_alias(new_alias, klass)
-    @aliases = aliases.merge({ new_alias.to_sym => klass.to_s })
+    @aliases = aliases.merge(new_alias.to_sym => klass.to_s)
   end
 
   def self.add_aliases(new_aliases)

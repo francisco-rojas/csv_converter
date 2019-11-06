@@ -16,14 +16,14 @@ RSpec.describe CSVConverter::Converters::BooleanConverter do
     it 'returns a boolean true' do
       truthy_values[:truthy_values].each do |truthy_value|
         subject = described_class.new(truthy_value, truthy_values)
-        expect(subject.process).to eq true
+        expect(subject.call).to eq true
       end
     end
 
     it 'returns a boolean true' do
       truthy_values[:truthy_values].each do |truthy_value|
         subject = described_class.new(truthy_value, truthy_values)
-        expect(subject.process!).to eq true
+        expect(subject.call!).to eq true
       end
     end
   end

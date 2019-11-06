@@ -6,13 +6,13 @@ module CSVConverter
   module Converters
     # Converts a string into a decimal number
     class BigDecimalConverter < BaseConverter
-      def process
-        process!
+      def call
+        call!
       rescue ArgumentError
         nullable_object
       end
 
-      def process!
+      def call!
         BigDecimal(data)
       end
 

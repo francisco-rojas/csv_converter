@@ -4,13 +4,13 @@ module CSVConverter
   module Converters
     # Cleans up a string
     class StringConverter < BaseConverter
-      def process
-        process!
+      def call
+        call!
       rescue ArgumentError
         nullable_object
       end
 
-      def process!
+      def call!
         raise ArgumentError, 'no data provided' if data.blank?
 
         data
