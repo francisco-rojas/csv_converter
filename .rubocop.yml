@@ -7,3 +7,11 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*'

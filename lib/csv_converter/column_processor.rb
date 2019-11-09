@@ -13,8 +13,13 @@ module CSVConverter
 
       return data if converters.blank?
 
-      converters.inject(data) do |d, (target_class, args)|
-        converter(target_class).new(d, args).call
+      converters.inject(data) do |d, (converter, options)|
+        if converter.respond_to?(:call)
+          # byebug if options
+          converter.call(d, options)
+        else
+          converter(converter).new(d, options).call
+        end
       end
     end
 
@@ -26,11 +31,11 @@ module CSVConverter
       row[col_mappings[:header]]
     end
 
-    def converter(target_class)
-      target_class = target_class.to_s
+    def converter(converter)
+      converter = converter.to_s
 
-      target_class = CSVConverter::ALIASES[target_class] if CSVConverter::ALIASES.keys.include?(target_class)
-      target_class.constantize
+      converter = CSVConverter::ALIASES[converter] if CSVConverter::ALIASES.keys.include?(converter)
+      converter.constantize
     end
   end
 end
