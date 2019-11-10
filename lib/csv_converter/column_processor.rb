@@ -15,7 +15,6 @@ module CSVConverter
 
       converters.inject(data) do |d, (converter, options)|
         if converter.respond_to?(:call)
-          # byebug if options
           converter.call(d, options)
         else
           converter(converter).new(d, options).call

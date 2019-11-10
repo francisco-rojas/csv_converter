@@ -15,36 +15,36 @@ module CSVConverter
 
     def file_scenarios
       [
-        # {
-        #   csv_file: 'sales_with_headers.csv',
-        #   config: load_yml('sales_mappings_with_headers_and_converters_names.yml'),
-        #   headers: true
-        # },
-        # {
-        #   csv_file: 'sales_with_headers.csv',
-        #   config: load_yml('sales_mappings_with_headers_and_converters_aliases.yml'),
-        #   headers: true
-        # },
+        {
+          csv_file: 'sales_with_headers.csv',
+          config: load_yml('sales_mappings_with_headers_and_converters_names.yml'),
+          headers: true
+        },
+        {
+          csv_file: 'sales_with_headers.csv',
+          config: load_yml('sales_mappings_with_headers_and_converters_aliases.yml'),
+          headers: true
+        },
         {
           csv_file: 'sales_with_headers.csv',
           config: sales_mappings_with_headers[:mappings],
           headers: true
+        },
+        {
+          csv_file: 'sales_without_headers.csv',
+          config: load_yml('sales_mappings_without_headers_and_converters_names.yml'),
+          headers: false
+        },
+        {
+          csv_file: 'sales_without_headers.csv',
+          config: load_yml('sales_mappings_without_headers_and_converters_aliases.yml'),
+          headers: false
+        },
+        {
+          csv_file: 'sales_without_headers.csv',
+          config: sales_mappings_without_headers[:mappings],
+          headers: false
         }
-        # {
-        #   csv_file: 'sales_without_headers.csv',
-        #   config: load_yml('sales_mappings_without_headers_and_converters_names.yml'),
-        #   headers: false
-        # },
-        # {
-        #   csv_file: 'sales_without_headers.csv',
-        #   config: load_yml('sales_mappings_without_headers_and_converters_aliases.yml'),
-        #   headers: false
-        # },
-        # {
-        #   csv_file: 'sales_without_headers.csv',
-        #   config: sales_mappings_without_headers[:mappings],
-        #   headers: false
-        # }
       ]
     end
 

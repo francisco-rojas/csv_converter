@@ -92,3 +92,181 @@ mappings:
       header: Total Profit
       converters:
         CSVConverter::Converters::BigDecimalConverter:
+  company:
+    nested: true
+    mappings:
+      company_name:
+        header: 0
+        converters:
+          CSVConverter::Converters::StringConverter:
+      website:
+        header: 1
+        converters:
+          CSVConverter::Converters::StringConverter:
+      phone1:
+        header: 2
+        converters:
+          CSVConverter::Converters::StringConverter:
+      phone2:
+        header: 3
+        converters:
+          CSVConverter::Converters::StringConverter:
+      address:
+        header: 4
+        converters:
+          CSVConverter::Converters::StringConverter:
+      city:
+        header: 5
+        converters:
+          CSVConverter::Converters::StringConverter:
+      county:
+        header: 6
+        converters:
+          CSVConverter::Converters::StringConverter:
+      state:
+        header: 7
+        converters:
+          CSVConverter::Converters::StringConverter:
+          CSVConverter::Converters::UppercaseConverter:
+      zip:
+        header: 8
+        converters:
+          CSVConverter::Converters::StringConverter:
+      country:
+        header: 9
+        converters:
+          CSVConverter::Converters::StringConverter:
+      country_code:
+        header: 10
+        converters:
+          CSVConverter::Converters::StringConverter:
+          CSVConverter::Converters::UppercaseConverter:
+  employee:
+    nested: true
+    mappings:
+      employee_id:
+        header: 0
+        converters:
+          CSVConverter::Converters::StringConverter:
+      name_prefix:
+        header: 1
+        converters:
+          CSVConverter::Converters::StringConverter:
+      first_name:
+        header: 2
+        converters:
+          CSVConverter::Converters::StringConverter:
+      middle_initial:
+        header: 3
+        converters:
+          CSVConverter::Converters::StringConverter:
+      last_name:
+        header: 4
+        converters:
+          CSVConverter::Converters::StringConverter:
+      gender:
+        header: 5
+        converters:
+          CSVConverter::Converters::StringConverter:
+      email:
+        header: 6
+        converters:
+          CSVConverter::Converters::StringConverter:
+      date_of_birth:
+        header: 7
+        converters:
+          CSVConverter::Converters::DateConverter:
+            date_format: "%m/%d/%y"
+      time_of_birth:
+        header: 8
+        converters:
+          CSVConverter::Converters::StringConverter:
+      age_in_yrs:
+        header: 9
+        converters:
+          CSVConverter::Converters::FloatConverter:
+      weight_in_kgs:
+        header: 10
+        converters:
+          CSVConverter::Converters::IntegerConverter:
+      date_of_joining:
+        header: 11
+        converters:
+          CSVConverter::Converters::DateConverter:
+            date_format: "%m/%d/%y"
+      quarter_of_joining:
+        header: 12
+        converters:
+          CSVConverter::Converters::StringConverter:
+      half_of_joining:
+        header: 13
+        converters:
+          CSVConverter::Converters::StringConverter:
+      year_of_joining:
+        header: 14
+        converters:
+          CSVConverter::Converters::IntegerConverter:
+      month_of_joining:
+        header: 15
+        converters:
+          CSVConverter::Converters::IntegerConverter:
+      month_name_of_joining:
+        header: 16
+        converters:
+          CSVConverter::Converters::StringConverter:
+      short_month_day_of_joining:
+        header: 17
+        converters:
+          CSVConverter::Converters::StringConverter:
+      dow_of_joining:
+        header: 18
+        converters:
+          CSVConverter::Converters::StringConverter:
+      short_dow:
+        header: 19
+        converters:
+          CSVConverter::Converters::StringConverter:
+      age_in_company:
+        header: 20
+        converters:
+          CSVConverter::Converters::FloatConverter:
+      salary:
+        header: 21
+        converters:
+          CSVConverter::Converters::StringConverter:
+      phone_no:
+        header: 22
+        converters:
+          CSVConverter::Converters::StringConverter:
+      place_name:
+        header: 23
+        converters:
+          CSVConverter::Converters::StringConverter:
+      county:
+        header: 24
+        converters:
+          CSVConverter::Converters::StringConverter:
+      city:
+        header: 25
+        converters:
+          CSVConverter::Converters::StringConverter:
+      state:
+        header: 26
+        converters:
+          CSVConverter::Converters::StringConverter:
+      zip:
+        header: 27
+        converters:
+          CSVConverter::Converters::StringConverter:
+      region:
+        header: 28
+        converters:
+          CSVConverter::Converters::StringConverter:
+      user_name:
+        header: 29
+        converters:
+          CSVConverter::Converters::StringConverter:
+      password:
+        header: 30
+        converters:
+          CSVConverter::Converters::StringConverter:
