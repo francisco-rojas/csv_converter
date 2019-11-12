@@ -3,9 +3,10 @@
 module CSVConverter
   # Extracts the value for a column from the csv row and applies conversions to it
   class ColumnProcessor
-    def initialize(row, col_mappings)
+    def initialize(row, col_mappings, stats = {})
       @row          = row
       @col_mappings = col_mappings
+      @stats        = stats
     end
 
     def call
@@ -14,6 +15,7 @@ module CSVConverter
       return data if converters.blank?
 
       converters.inject(data) do |d, (converter, options)|
+        options = (options || {}).merge(stats)
         if converter.respond_to?(:call)
           converter.call(d, options)
         else
@@ -24,7 +26,7 @@ module CSVConverter
 
     private
 
-    attr_reader :row, :col_mappings
+    attr_reader :row, :col_mappings, :stats
 
     def data
       row[col_mappings[:header]]

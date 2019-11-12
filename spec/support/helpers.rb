@@ -175,6 +175,286 @@ module CSVConverter
                 'CSVConverter::Converters::BigDecimalConverter' => nil
               }
             }
+          },
+          company: {
+            nested: true,
+            header: 'Company',
+            mappings: {
+              company_name: {
+                header: 0,
+                converters: {
+                  string: nil
+                }
+              },
+              website: {
+                header: 1,
+                converters: {
+                  string: nil
+                }
+              },
+              phone1: {
+                header: 2,
+                converters: {
+                  string: nil
+                }
+              },
+              phone2: {
+                header: 3,
+                converters: {
+                  string: nil
+                }
+              },
+              address: {
+                header: 4,
+                converters: {
+                  string: nil
+                }
+              },
+              city: {
+                header: 5,
+                converters: {
+                  string: nil
+                }
+              },
+              county: {
+                header: 6,
+                converters: {
+                  string: nil
+                }
+              },
+              state: {
+                header: 7,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              zip: {
+                header: 8,
+                converters: {
+                  string: nil
+                }
+              },
+              country: {
+                header: 9,
+                converters: {
+                  string: nil
+                }
+              },
+              country_code: {
+                header: 10,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              }
+            }
+          },
+          employee: {
+            nested: true,
+            header: 'Employee',
+            mappings: {
+              employee_id: {
+                header: 0,
+                converters: {
+                  string: nil
+                }
+              },
+              name_prefix: {
+                header: 1,
+                converters: {
+                  string: nil
+                }
+              },
+              first_name: {
+                header: 2,
+                converters: {
+                  string: nil
+                }
+              },
+              middle_initial: {
+                header: 3,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              last_name: {
+                header: 4,
+                converters: {
+                  string: nil
+                }
+              },
+              gender: {
+                header: 5,
+                converters: {
+                  string: nil
+                }
+              },
+              email: {
+                header: 6,
+                converters: {
+                  string: nil
+                }
+              },
+              date_of_birth: {
+                header: 7,
+                converters: {
+                  date: {
+                    date_format: '%m/%d/%y'
+                  }
+                }
+              },
+              time_of_birth: {
+                header: 8,
+                converters: {
+                  string: nil
+                }
+              },
+              age_in_yrs: {
+                header: 9,
+                converters: {
+                  float: nil
+                }
+              },
+              weight_in_kgs: {
+                header: 10,
+                converters: {
+                  integer: nil
+                }
+              },
+              date_of_joining: {
+                header: 11,
+                converters: {
+                  date: {
+                    date_format: '%m/%d/%y'
+                  }
+                }
+              },
+              quarter_of_joining: {
+                header: 12,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              half_of_joining: {
+                header: 13,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              year_of_joining: {
+                header: 14,
+                converters: {
+                  integer: nil
+                }
+              },
+              month_of_joining: {
+                header: 15,
+                converters: {
+                  integer: nil
+                }
+              },
+              month_name_of_joining: {
+                header: 16,
+                converters: {
+                  string: nil
+                }
+              },
+              short_month: {
+                header: 17,
+                converters: {
+                  string: nil
+                }
+              },
+              day_of_joining: {
+                header: 18,
+                converters: {
+                  integer: nil
+                }
+              },
+              dow_of_joining: {
+                header: 19,
+                converters: {
+                  string: nil
+                }
+              },
+              short_dow: {
+                header: 20,
+                converters: {
+                  string: nil
+                }
+              },
+              age_in_company: {
+                header: 21,
+                converters: {
+                  float: nil
+                }
+              },
+              salary: {
+                header: 22,
+                converters: {
+                  integer: nil
+                }
+              },
+              phone_no: {
+                header: 23,
+                converters: {
+                  string: nil
+                }
+              },
+              place_name: {
+                header: 24,
+                converters: {
+                  string: nil
+                }
+              },
+              county: {
+                header: 25,
+                converters: {
+                  string: nil
+                }
+              },
+              city: {
+                header: 26,
+                converters: {
+                  string: nil
+                }
+              },
+              state: {
+                header: 27,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              zip: {
+                header: 28,
+                converters: {
+                  string: nil
+                }
+              },
+              region: {
+                header: 29,
+                converters: {
+                  string: nil
+                }
+              },
+              user_name: {
+                header: 30,
+                converters: {
+                  string: nil
+                }
+              },
+              password: {
+                header: 31,
+                converters: {
+                  string: nil
+                }
+              }
+            }
           }
         }
       }
@@ -305,6 +585,286 @@ module CSVConverter
               header: 17,
               converters: {
                 'CSVConverter::Converters::BigDecimalConverter' => nil
+              }
+            }
+          },
+          company: {
+            nested: true,
+            header: 18,
+            mappings: {
+              company_name: {
+                header: 0,
+                converters: {
+                  string: nil
+                }
+              },
+              website: {
+                header: 1,
+                converters: {
+                  string: nil
+                }
+              },
+              phone1: {
+                header: 2,
+                converters: {
+                  string: nil
+                }
+              },
+              phone2: {
+                header: 3,
+                converters: {
+                  string: nil
+                }
+              },
+              address: {
+                header: 4,
+                converters: {
+                  string: nil
+                }
+              },
+              city: {
+                header: 5,
+                converters: {
+                  string: nil
+                }
+              },
+              county: {
+                header: 6,
+                converters: {
+                  string: nil
+                }
+              },
+              state: {
+                header: 7,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              zip: {
+                header: 8,
+                converters: {
+                  string: nil
+                }
+              },
+              country: {
+                header: 9,
+                converters: {
+                  string: nil
+                }
+              },
+              country_code: {
+                header: 10,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              }
+            }
+          },
+          employee: {
+            nested: true,
+            header: 19,
+            mappings: {
+              employee_id: {
+                header: 0,
+                converters: {
+                  string: nil
+                }
+              },
+              name_prefix: {
+                header: 1,
+                converters: {
+                  string: nil
+                }
+              },
+              first_name: {
+                header: 2,
+                converters: {
+                  string: nil
+                }
+              },
+              middle_initial: {
+                header: 3,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              last_name: {
+                header: 4,
+                converters: {
+                  string: nil
+                }
+              },
+              gender: {
+                header: 5,
+                converters: {
+                  string: nil
+                }
+              },
+              email: {
+                header: 6,
+                converters: {
+                  string: nil
+                }
+              },
+              date_of_birth: {
+                header: 7,
+                converters: {
+                  date: {
+                    date_format: '%m/%d/%y'
+                  }
+                }
+              },
+              time_of_birth: {
+                header: 8,
+                converters: {
+                  string: nil
+                }
+              },
+              age_in_yrs: {
+                header: 9,
+                converters: {
+                  float: nil
+                }
+              },
+              weight_in_kgs: {
+                header: 10,
+                converters: {
+                  integer: nil
+                }
+              },
+              date_of_joining: {
+                header: 11,
+                converters: {
+                  date: {
+                    date_format: '%m/%d/%y'
+                  }
+                }
+              },
+              quarter_of_joining: {
+                header: 12,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              half_of_joining: {
+                header: 13,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              year_of_joining: {
+                header: 14,
+                converters: {
+                  integer: nil
+                }
+              },
+              month_of_joining: {
+                header: 15,
+                converters: {
+                  integer: nil
+                }
+              },
+              month_name_of_joining: {
+                header: 16,
+                converters: {
+                  string: nil
+                }
+              },
+              short_month: {
+                header: 17,
+                converters: {
+                  string: nil
+                }
+              },
+              day_of_joining: {
+                header: 18,
+                converters: {
+                  integer: nil
+                }
+              },
+              dow_of_joining: {
+                header: 19,
+                converters: {
+                  string: nil
+                }
+              },
+              short_dow: {
+                header: 20,
+                converters: {
+                  string: nil
+                }
+              },
+              age_in_company: {
+                header: 21,
+                converters: {
+                  float: nil
+                }
+              },
+              salary: {
+                header: 22,
+                converters: {
+                  integer: nil
+                }
+              },
+              phone_no: {
+                header: 23,
+                converters: {
+                  string: nil
+                }
+              },
+              place_name: {
+                header: 24,
+                converters: {
+                  string: nil
+                }
+              },
+              county: {
+                header: 25,
+                converters: {
+                  string: nil
+                }
+              },
+              city: {
+                header: 26,
+                converters: {
+                  string: nil
+                }
+              },
+              state: {
+                header: 27,
+                converters: {
+                  string: nil,
+                  uppercase: nil
+                }
+              },
+              zip: {
+                header: 28,
+                converters: {
+                  string: nil
+                }
+              },
+              region: {
+                header: 29,
+                converters: {
+                  string: nil
+                }
+              },
+              user_name: {
+                header: 30,
+                converters: {
+                  string: nil
+                }
+              },
+              password: {
+                header: 31,
+                converters: {
+                  string: nil
+                }
               }
             }
           }
