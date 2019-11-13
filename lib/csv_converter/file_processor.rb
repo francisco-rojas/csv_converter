@@ -3,47 +3,35 @@
 module CSVConverter
   # Iterates over the rows of a file and processes the data accordingly
   class FileProcessor
-    def initialize(filename, rows, file_mappings, column_processor: CSVConverter::ColumnProcessor)
-      @filename           = filename
-      @rows               = rows
-      @file_mappings      = file_mappings
-      @column_processor   = column_processor
+    attr_reader :filename, :rows, :file_mappings
+
+    def initialize(filename, rows, file_mappings)
+      @filename       = filename
+      @rows           = rows
+      @file_mappings  = file_mappings
     end
 
     def call
       rows.map.with_index do |row, row_num|
-        process_rows(row, row_num)
+        process_entities(row, row_num, &:call)
+      end
+    end
+
+    def call!
+      rows.map.with_index do |row, row_num|
+        process_entities(row, row_num, &:call!)
       end
     end
 
     private
 
-    def process_rows(row, row_num)
-      file_mappings.each_with_object({}) do |(model, model_mappings), hash|
-        hash[model] = {} unless hash.key?(model)
-        hash[model] = if model_mappings[:nested]
-                        process_nested_row(row, model_mappings, row_num, model)
-                      else
-                        process_cols(row, model_mappings, row_num, model)
-                      end
+    def process_entities(row, row_num)
+      file_mappings.each_with_object({}) do |(entity, entity_mappings), hash|
+        hash[entity] = {} unless hash.key?(entity)
+        options = { filename: filename, row_num: row_num, entity: entity, row: row }
+        processor = CSVConverter::EntityProcessor.new(row, entity_mappings, options)
+        hash[entity] = yield(processor)
       end
     end
-
-    # when csv is nested in a column
-    # split the column data by the specified separator before processing
-    def process_nested_row(row, model_mappings, row_num, model)
-      nested_row = row[model_mappings[:header]]
-      separator  = model_mappings[:separator] || ','
-      process_cols(nested_row.split(separator), model_mappings[:mappings], row_num, model)
-    end
-
-    def process_cols(row, model_mappings, row_num, model)
-      model_mappings.each_with_object({}) do |(target_col, col_mappings), hash|
-        stats = { filename: filename, row_num: row_num, model: model, target_col: target_col }
-        hash[target_col] = column_processor.new(row, col_mappings, stats).call
-      end
-    end
-
-    attr_reader :filename, :rows, :file_mappings, :column_processor
   end
 end

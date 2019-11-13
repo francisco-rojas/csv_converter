@@ -240,7 +240,7 @@ mappings:
       age_in_company:
         header: 21
         converters:
-          CSVConverter::Converters::StringConverter:
+          CSVConverter::Converters::FloatConverter:
       salary:
         header: 22
         converters:

@@ -10,40 +10,46 @@ module CSVConverter
 
     def load_yml(filename)
       path = file_fixture(filename)
-      YAML.load_file(path).deep_symbolize_keys[:config]
+      YAML.load_file(path).deep_symbolize_keys[:mappings]
     end
 
     def file_scenarios
       [
         {
           csv_file: 'sales_with_headers.csv',
-          config: load_yml('sales_mappings_with_headers_and_converters_names.yml'),
-          headers: true
+          mappings: load_yml('sales_mappings_with_headers_and_converters_names.yml'),
+          headers: true,
+          file_scenario: 1
         },
         {
           csv_file: 'sales_with_headers.csv',
-          config: load_yml('sales_mappings_with_headers_and_converters_aliases.yml'),
-          headers: true
+          mappings: load_yml('sales_mappings_with_headers_and_converters_aliases.yml'),
+          headers: true,
+          file_scenario: 2
         },
         {
           csv_file: 'sales_with_headers.csv',
-          config: sales_mappings_with_headers[:mappings],
-          headers: true
+          mappings: sales_mappings_with_headers[:mappings],
+          headers: true,
+          file_scenario: 3
         },
         {
           csv_file: 'sales_without_headers.csv',
-          config: load_yml('sales_mappings_without_headers_and_converters_names.yml'),
-          headers: false
+          mappings: load_yml('sales_mappings_without_headers_and_converters_names.yml'),
+          headers: false,
+          file_scenario: 4
         },
         {
           csv_file: 'sales_without_headers.csv',
-          config: load_yml('sales_mappings_without_headers_and_converters_aliases.yml'),
-          headers: false
+          mappings: load_yml('sales_mappings_without_headers_and_converters_aliases.yml'),
+          headers: false,
+          file_scenario: 5
         },
         {
           csv_file: 'sales_without_headers.csv',
-          config: sales_mappings_without_headers[:mappings],
-          headers: false
+          mappings: sales_mappings_without_headers[:mappings],
+          headers: false,
+          file_scenario: 6
         }
       ]
     end

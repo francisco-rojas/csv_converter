@@ -20,16 +20,18 @@ require 'csv_converter/converters/string_converter'
 require 'csv_converter/converters/uppercase_converter'
 require 'csv_converter/converters/lowercase_converter'
 require 'csv_converter/file_processor'
-require 'csv_converter/column_processor'
+require 'csv_converter/entity_processor'
+require 'csv_converter/attribute_processor'
 
 # CSVConverter transforms and groups raw data from csv files according to the config provided
 module CSVConverter
+  # Error holds error messages as well as information about the file, row and column being processed
   class Error < StandardError
     attr_reader :details
 
     def initialize(msg, details = {})
-      @details  = details
-      super(msg)
+      @details = details
+      super("#{msg} on: #{details}")
     end
   end
 

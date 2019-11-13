@@ -7,7 +7,7 @@ module CSVConverter
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        raise CSVConverter::Error.new("no `date_format` provided", error_details) if options[:date_format].blank?
+        raise CSVConverter::Error.new('no `date_format` provided', options) if options[:date_format].blank?
       end
 
       def call
@@ -18,8 +18,8 @@ module CSVConverter
 
       def call!
         Date.strptime(data, options[:date_format])
-      rescue => e
-        raise CSVConverter::Error.new(e.message, error_details)
+      rescue StandardError => e
+        raise CSVConverter::Error.new(e.message, options)
       end
 
       private

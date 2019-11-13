@@ -5,12 +5,12 @@ require 'yaml'
 
 RSpec.describe CSVConverter::FileProcessor do
   file_scenarios.each do |scenario|
-    let(:csv_file_path) { file_fixture(scenario[:csv_file]) }
-    let(:csv_filename) { csv_file_path.basename.to_s }
-    let(:csv_rows) { CSV.read(csv_file_path, headers: scenario[:headers]) }
-    subject { described_class.new(csv_filename, csv_rows, scenario[:config]) }
-    let(:processed_file) { subject.call }
-    let(:processed_row) { processed_file.first }
+    csv_file_path   = file_fixture(scenario[:csv_file])
+    csv_filename    = csv_file_path.basename.to_s
+    csv_rows        = CSV.read(csv_file_path, headers: scenario[:headers])
+    subject         = CSVConverter::FileProcessor.new(csv_filename, csv_rows, scenario[:mappings])
+    processed_file  = subject.call
+    processed_row   = processed_file.first
 
     it 'creates one element per row' do
       expect(processed_file.size).to eq 20

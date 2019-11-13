@@ -40,15 +40,6 @@ module CSVConverter
       def nullable_object
         raise NotImplementedError
       end
-
-      def error_details
-        {
-          filename: options[:filename],
-          model: options[:model],
-          row_number: options[:row_num],
-          column: options[:target_col]
-        }
-      end
     end
   end
 end

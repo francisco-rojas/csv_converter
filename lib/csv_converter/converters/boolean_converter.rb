@@ -7,7 +7,7 @@ module CSVConverter
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        raise CSVConverter::Error.new("no `truthy_values` provided", error_details) if options[:truthy_values].blank?
+        raise CSVConverter::Error.new('no `truthy_values` provided', options) if options[:truthy_values].blank?
       end
 
       def call
@@ -18,8 +18,8 @@ module CSVConverter
 
       def call!
         options[:truthy_values].include?(data)
-      rescue => e
-        raise CSVConverter::Error.new(e.message, error_details)
+      rescue StandardError => e
+        raise CSVConverter::Error.new(e.message, options)
       end
 
       private

@@ -12,8 +12,8 @@ module CSVConverter
 
       def call!
         Integer(data)
-      rescue => e
-        raise CSVConverter::Error.new(e.message, error_details)
+      rescue StandardError => e
+        raise CSVConverter::Error.new(e.message, options)
       end
 
       private
