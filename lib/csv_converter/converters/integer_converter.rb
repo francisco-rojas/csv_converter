@@ -6,12 +6,14 @@ module CSVConverter
     class IntegerConverter < BaseConverter
       def call
         call!
-      rescue ArgumentError
+      rescue CSVConverter::Error
         nullable_object
       end
 
       def call!
         Integer(data)
+      rescue => e
+        raise CSVConverter::Error.new(e.message, error_details)
       end
 
       private

@@ -6,7 +6,7 @@ module CSVConverter
     class LowercaseConverter < BaseConverter
       def call
         call!
-      rescue ArgumentError
+      rescue CSVConverter::Error
         nullable_object
       end
 
@@ -14,6 +14,8 @@ module CSVConverter
         raise ArgumentError, 'no data provided' if data.blank?
 
         data.downcase
+      rescue => e
+        raise CSVConverter::Error.new(e.message, error_details)
       end
 
       private

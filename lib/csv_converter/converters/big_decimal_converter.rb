@@ -8,12 +8,14 @@ module CSVConverter
     class BigDecimalConverter < BaseConverter
       def call
         call!
-      rescue ArgumentError
+      rescue CSVConverter::Error
         nullable_object
       end
 
       def call!
         BigDecimal(data)
+      rescue => e
+        raise CSVConverter::Error.new(e.message, error_details)
       end
 
       private

@@ -7,7 +7,7 @@ module CSVConverter
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        raise ArgumentError, 'no `separator` provided' if options[:separator].blank?
+        raise CSVConverter::Error.new("no `separator` provided", error_details) if options[:separator].blank?
       end
 
       def call
@@ -18,6 +18,8 @@ module CSVConverter
 
       def call!
         data.gsub(' ', '').split(options[:separator])
+      rescue => e
+        raise CSVConverter::Error.new(e.message, error_details)
       end
 
       private

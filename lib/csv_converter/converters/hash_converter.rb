@@ -7,13 +7,13 @@ module CSVConverter
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        raise ArgumentError, 'no `item_separator` provided' if options[:item_separator].nil?
-        raise ArgumentError, 'no `key_value_separator` provided' if options[:key_value_separator].nil?
+        raise CSVConverter::Error.new('no `item_separator` provided', error_details) if options[:item_separator].nil?
+        raise CSVConverter::Error.new('no `key_value_separator` provided', error_details) if options[:key_value_separator].nil?
       end
 
       def call
         call!
-      rescue ArgumentError
+      rescue CSVConverter::Error
         nullable_object
       end
 
@@ -21,6 +21,8 @@ module CSVConverter
         data.split(options[:item_separator]).map do |items|
           items.split(options[:key_value_separator]).map(&:strip)
         end.to_h
+      rescue => e
+        raise CSVConverter::Error.new(e.message, error_details)
       end
 
       private

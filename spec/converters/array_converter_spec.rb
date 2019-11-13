@@ -5,8 +5,7 @@ RSpec.describe CSVConverter::Converters::ArrayConverter do
     it 'raises an error' do
       expect do
         described_class.new('item1, item2, item3')
-      end.to raise_error(ArgumentError,
-                         'no `separator` provided')
+      end.to raise_error(CSVConverter::Error)
     end
   end
 

@@ -24,7 +24,14 @@ require 'csv_converter/column_processor'
 
 # CSVConverter transforms and groups raw data from csv files according to the config provided
 module CSVConverter
-  class Error < StandardError; end
+  class Error < StandardError
+    attr_reader :details
+
+    def initialize(msg, details = {})
+      @details  = details
+      super(msg)
+    end
+  end
 
   ALIASES = {
     array: 'CSVConverter::Converters::ArrayConverter',

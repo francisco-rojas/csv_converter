@@ -32,7 +32,7 @@ RSpec.describe CSVConverter::Converters::LowercaseConverter do
       subject { described_class.new(nil) }
 
       it 'raises an error' do
-        expect { subject.call! }.to raise_error(ArgumentError)
+        expect { subject.call! }.to raise_error(CSVConverter::Error)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe CSVConverter::Converters::LowercaseConverter do
       subject { described_class.new(nil) }
 
       it 'raises an error' do
-        expect { subject.call! }.to raise_error(ArgumentError)
+        expect { subject.call! }.to raise_error(CSVConverter::Error)
       end
     end
 

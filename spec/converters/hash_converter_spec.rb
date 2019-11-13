@@ -5,8 +5,7 @@ RSpec.describe CSVConverter::Converters::HashConverter do
     subject { described_class.new('key1: value1, key2: value2, key3: value3', key_value_separator: ':') }
 
     it 'raises an error' do
-      expect { subject.call! }.to raise_error(ArgumentError,
-                                              'no `item_separator` provided')
+      expect { subject.call! }.to raise_error(CSVConverter::Error)
     end
   end
 
@@ -14,8 +13,7 @@ RSpec.describe CSVConverter::Converters::HashConverter do
     subject { described_class.new('key1: value1, key2: value2, key3: value3', item_separator: ',') }
 
     it 'raises an error' do
-      expect { subject.call! }.to raise_error(ArgumentError,
-                                              'no `key_value_separator` provided')
+      expect { subject.call! }.to raise_error(CSVConverter::Error)
     end
   end
 
@@ -37,7 +35,7 @@ RSpec.describe CSVConverter::Converters::HashConverter do
 
       describe '#call!' do
         it 'raises an error' do
-          expect { str1.call! }.to raise_error(ArgumentError)
+          expect { str1.call! }.to raise_error(CSVConverter::Error)
         end
       end
     end

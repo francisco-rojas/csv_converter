@@ -32,7 +32,7 @@ RSpec.describe CSVConverter::Converters::IntegerConverter do
       subject { described_class.new('ABC') }
 
       it 'raises an error' do
-        expect { subject.call! }.to raise_error(ArgumentError)
+        expect { subject.call! }.to raise_error(CSVConverter::Error)
       end
     end
   end
