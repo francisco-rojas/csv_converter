@@ -7,22 +7,50 @@ RSpec.describe CSVConverter::Converters::BooleanConverter do
     end
   end
 
-  describe 'when truthy values provided' do
+  describe '#call' do
     let(:truthy_values) do
       { truthy_values: %w[YES yes Y y] }
     end
 
-    it 'returns a boolean true' do
-      truthy_values[:truthy_values].each do |truthy_value|
-        subject = described_class.new(truthy_value, truthy_values)
-        expect(subject.call).to eq true
+    context 'when input is in `truthy_values` list' do
+      it 'returns a boolean true' do
+        truthy_values[:truthy_values].each do |truthy_value|
+          subject = described_class.new(truthy_value, truthy_values)
+          expect(subject.call).to eq true
+        end
       end
     end
 
-    it 'returns a boolean true' do
-      truthy_values[:truthy_values].each do |truthy_value|
-        subject = described_class.new(truthy_value, truthy_values)
-        expect(subject.call!).to eq true
+    context 'when input is not in `truthy_values` list' do
+      it 'returns a boolean false' do
+        truthy_values[:truthy_values].each do |_truthy_value|
+          subject = described_class.new('lorem', truthy_values)
+          expect(subject.call).to eq false
+        end
+      end
+    end
+  end
+
+  describe '#call!' do
+    let(:truthy_values) do
+      { truthy_values: %w[YES yes Y y] }
+    end
+
+    context 'when input is in `truthy_values` list' do
+      it 'returns a boolean true' do
+        truthy_values[:truthy_values].each do |truthy_value|
+          subject = described_class.new(truthy_value, truthy_values)
+          expect(subject.call!).to eq true
+        end
+      end
+    end
+
+    context 'when input is not in `truthy_values` list' do
+      it 'returns a boolean false' do
+        truthy_values[:truthy_values].each do |_truthy_value|
+          subject = described_class.new('lorem', truthy_values)
+          expect(subject.call!).to eq false
+        end
       end
     end
   end

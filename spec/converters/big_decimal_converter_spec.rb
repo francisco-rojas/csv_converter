@@ -2,7 +2,7 @@
 
 RSpec.describe CSVConverter::Converters::BigDecimalConverter do
   describe '#call' do
-    describe 'when valid string number provided' do
+    context 'when period used as floating point separator' do
       subject { described_class.new('1234.5678') }
 
       it 'converts the string into a decimal number' do
@@ -10,7 +10,15 @@ RSpec.describe CSVConverter::Converters::BigDecimalConverter do
       end
     end
 
-    describe 'when invalid string provied' do
+    context 'when comma used as floating point separator' do
+      subject { described_class.new('1234,5678') }
+
+      it 'converts the string into a decimal number' do
+        expect(subject.call).to eq 1234.5678
+      end
+    end
+
+    context 'when invalid input provied' do
       subject { described_class.new('ABC') }
 
       it 'returns the nullable_object' do
@@ -20,7 +28,7 @@ RSpec.describe CSVConverter::Converters::BigDecimalConverter do
   end
 
   describe '#call!' do
-    describe 'when valid string number provided' do
+    context 'when period used as floating point separator' do
       subject { described_class.new('1234.5678') }
 
       it 'converts the string into a decimal number' do
@@ -28,7 +36,15 @@ RSpec.describe CSVConverter::Converters::BigDecimalConverter do
       end
     end
 
-    describe 'when invalid string provied' do
+    context 'when comma used as floating point separator' do
+      subject { described_class.new('1234,5678') }
+
+      it 'converts the string into a decimal number' do
+        expect(subject.call!).to eq 1234.5678
+      end
+    end
+
+    context 'when invalid input provied' do
       subject { described_class.new('ABC') }
 
       it 'raises an error' do

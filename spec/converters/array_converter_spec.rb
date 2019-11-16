@@ -11,18 +11,38 @@ RSpec.describe CSVConverter::Converters::ArrayConverter do
 
   describe 'when separator provided' do
     describe '#call' do
-      subject { described_class.new('item1, item2, item3', separator: ',') }
+      context 'with valid input' do
+        subject { described_class.new('item 1, item 2, item 3', separator: ',') }
 
-      it 'splits the string into an array' do
-        expect(subject.call).to eq %w[item1 item2 item3]
+        it 'splits the string into an array' do
+          expect(subject.call).to eq ['item 1', 'item 2', 'item 3']
+        end
+      end
+
+      context 'with invalid input' do
+        subject { described_class.new(nil, separator: ',') }
+
+        it 'returns the nullable object' do
+          expect(subject.call).to eq []
+        end
       end
     end
 
     describe '#call!' do
-      subject { described_class.new('item1, item2, item3', separator: ',') }
+      context 'with valid input' do
+        subject { described_class.new('item 1, item 2, item 3', separator: ',') }
 
-      it 'splits the string into an array' do
-        expect(subject.call!).to eq %w[item1 item2 item3]
+        it 'splits the string into an array' do
+          expect(subject.call!).to eq ['item 1', 'item 2', 'item 3']
+        end
+      end
+
+      context 'with invalid input' do
+        subject { described_class.new(nil, separator: ',') }
+
+        it 'raises an error' do
+          expect { subject.call! }.to raise_error(CSVConverter::Error)
+        end
       end
     end
   end

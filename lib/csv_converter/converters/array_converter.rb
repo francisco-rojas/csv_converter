@@ -17,7 +17,7 @@ module CSVConverter
       end
 
       def call!
-        data.gsub(' ', '').split(options[:separator])
+        data.split(options[:separator]).map(&:strip)
       rescue StandardError => e
         raise CSVConverter::Error.new(e.message, options)
       end

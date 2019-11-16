@@ -11,7 +11,7 @@ module CSVConverter
       end
 
       def call!
-        Float(data)
+        Float(data.sub(',', '.'))
       rescue StandardError => e
         raise CSVConverter::Error.new(e.message, options)
       end

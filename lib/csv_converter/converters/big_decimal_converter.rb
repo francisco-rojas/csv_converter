@@ -13,7 +13,7 @@ module CSVConverter
       end
 
       def call!
-        BigDecimal(data)
+        BigDecimal(data.sub(',', '.'))
       rescue StandardError => e
         raise CSVConverter::Error.new(e.message, options)
       end
