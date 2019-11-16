@@ -1,148 +1,104 @@
 # csv_converter [![Build Status](https://travis-ci.org/francisco-rojas/basic_ruby.svg?branch=master)](https://travis-ci.org/francisco-rojas/basic_ruby)
 
-csv_converter is a library for facilitating the conversion of data provided in .csv files.
-This library is NOT for parsing .csv files. There are already plenty of libraries out there for reading and parsing .csv files, including the ruby standard library. Instead, this library focuses on the conversion of the data provided in the .csv files. Often times, it is required to cast the string data into a ruby object, perform validations on that data, and map it to the corresponding tables and table columns in the database. This library aims to make that process as simple as possible.
+*csv_converter* is a library for facilitating the grouping and transformation of tabulated data contained in files such as csv or spreadsheets files. This is **not** a library for parsing files. There are already plenty of libraries out there for reading and parsing files in different formats.
 
-For example, given the following csv:
+Instead, this library focuses on the conversion of the data provided in the files. Often times, it is required to cast the text data into a ruby object, perform validations on that data, and map it to the corresponding db tables/models and columns/attributes. This library aims to simplify that process.
+
+For example, given the following csv content:
 
 ```
-Sales Region,Sales Country,Sale Completed,Sale Notes,Item Type,Item Code,Item Description,Sale Channel,Order Priority,Order Date (mm/dd/yy),Order #,Order Ship Date,Order Units Sold,Order Unit Price,Order Unit Cost,Total Revenue
-Middle East and North Africa,Libya,Y,"LoremIpsum",Cosmetics,1031422,"Lorem ipsum",Offline,m,10/18/14,686800706,10/31/14,8446,437.2,263.33,3692591.2,2224085.18,1468506.02
+First Name,Last Name,Make,Model,Year,Color,Purchase Date
+John,Smith,Ford,Mustang,2000,Black,25/01/99
+Julian,Moore,Toyota,Yaris,2005,Red,13/04/05
+Joe,Black,Volvo,V40,2015,Gold,03/02/16
 ```
+
+| First Name  | Last Name | Make    | Model   | Year | Color | Purchase Date |
+| ----------- | --------- | ------- | ------- | ---- | ----- | ------------- |
+| John        | Smith     | Ford    | Mustang | 2000 | Black | 25/01/99      |
+| Julian      | Moore     | Toyota  | Yaris   | 2005 | Red   | 13/04/05      |
+| Joe         | Black     | Volvo   | V40     | 2015 | Gold  | 03/02/16      |
+
 
 you might want something like this:
 
 ```ruby
-{
-    sale: {
-        region: "Middle East and North Africa",
-        country: "Libya",
-        completed: true,
-        notes: "LoremIpsum",
-        channel: "Offline"
+[
+  {
+    "owner" => {
+      "first_name" => "John",
+      "last_name" => "Smith"
     },
-    item: {
-        type: "Cosmetics",
-        code: "1031422",
-        description: "Lorem ipsum"
-    },
-    order: {
-        priority: "M",
-        date: #<Date: 2014-10-18 ((2456949j,0s,0n),+0s,2299161j)>,
-        number: "686800706",
-        shipping_date: #<Date: 2014-10-31 ((2456962j,0s,0n),+0s,2299161j)>,
-        units_sold: 8446,
-        unit_price: 0.4372e3,
-        unit_cost: 0.26333e3,
-        total_revenue: 0.36925912e7,
-        total_cost: 0.222408518e7,
-        total_profit: 0.146850602e7
+    "vehicle" => {
+      "make" => "Ford",
+      "model" => "Mustang",
+      "year" => 2000,
+      "color" => "Black",
+      "purchase_date" => #<Date: 1999-01-25 ((2451204j,0s,0n),+0s,2299161j)>
     }
-}
+  },
+  {
+    "owner" => {
+      "first_name" => "Julian",
+      "last_name" => "Moore"
+    },
+    "vehicle" => {
+      "make" => "Toyota",
+      "model" => "Yaris",
+      "year" => 2005,
+      "color" => "Red",
+      "purchase_date" => #<Date: 2005-04-15 ((2453476j,0s,0n),+0s,2299161j)>
+    }
+  },
+  {
+    "owner" => {
+      "first_name" => "Joe",
+      "last_name" => "Black"
+    },
+    "vehicle" => {
+      "make" => "Volvo",
+      "model" => "V40",
+      "year" => 2015,
+      "color" => "Gold",
+      "purchase_date" => #<Date: 2016-03-02 ((2457450j,0s,0n),+0s,2299161j)>
+    }
+  }
+]
 ```
 
-here, each column from the csv has been group according to the corresponding table in the database where the data will be stored. Also, the data for each column has been converted to the expected data type.
+In this example, each column from the csv has been grouped according to the configuration provided. Also, the data for each column has been converted to the expected data type.
 
-All this is performed by csv_converter based on the mappings provieded for the file in a .yml config file that lookes like this:
+This is performed by *csv_converter* based on the configuration provided in a .yml file (or a ruby hash) that lookes like this:
 
 ```
-truthy_values: &default_truthy_values
-  - "Yes"
-  - "YES"
-  - "Y"
-  - "y"
-
-empty_values: &default_empty_values
-  - "NA"
-  - "na"
-  - "N/A"
-  - "n/a"
-
-mappings:
-  sale:
-    region:
-      header: Sales Region
-      converters:
-        CSVConverter::Converters::StringConverter:
-    country:
-      header: Sales Country
-      converters:
-        CSVConverter::Converters::StringConverter:
-    completed:
-      header: Sale Completed
-      converters:
-        CSVConverter::Converters::BooleanConverter:
-          truthy_values: *default_truthy_values
-    notes:
-      header: Sale Notes
-      converters:
-        CSVConverter::Converters::StringConverter:
-          empty_values: *default_empty_values
-    channel:
-      header: Sale Channel
-      converters:
-        CSVConverter::Converters::StringConverter:
-  item:
-    type:
-      header: Item Type
-      converters:
-        CSVConverter::Converters::StringConverter:
-          default: Article
-    code:
-      header: Item Code
-      converters:
-        CSVConverter::Converters::StringConverter:
-    description:
-      header: Item Description
-      converters:
-        CSVConverter::Converters::StringConverter:
-  order:
-    priority:
-      header: Order Priority
-      converters:
-        CSVConverter::Converters::StringConverter:
-        CSVConverter::Converters::UppercaseConverter:
-    date:
-      header: Order Date (mm/dd/yy)
-      converters:
-        CSVConverter::Converters::DateConverter:
-          date_format: "%m/%d/%y"
-    number:
-      header: "Order #"
-      converters:
-        CSVConverter::Converters::StringConverter:
-    shipping_date:
-      header: Order Ship Date
-      converters:
-        CSVConverter::Converters::DateConverter:
-          date_format: "%m/%d/%y"
-    units_sold:
-      header: Order Units Sold
-      converters:
-        CSVConverter::Converters::IntegerConverter:
-    unit_price:
-      header: Order Unit Price
-      converters:
-        CSVConverter::Converters::BigDecimalConverter:
-    unit_cost:
-      header: Order Unit Cost
-      converters:
-        CSVConverter::Converters::BigDecimalConverter:
-    total_revenue:
-      header: Total Revenue
-      converters:
-        CSVConverter::Converters::BigDecimalConverter:
-    total_cost:
-      header: Total Cost
-      converters:
-        CSVConverter::Converters::BigDecimalConverter:
-    total_profit:
-      header: Total Profit
-      converters:
-        CSVConverter::Converters::BigDecimalConverter:
+owner:
+  first_name:
+    header: First Name
+  last_name:
+    header: Last Name
+vehicle:
+  make:
+    header: Make
+  model:
+    header: Model
+  year:
+    header: Year
+    converters:
+      integer:
+  color:
+    header: Color
+  purchase_date:
+    header: Purchase Date
+    converters:
+      date:
+        date_format: "%m/%d/%y"
 ```
 
-THIS IS STILL A WORK IN PROGRESS! I am continually working on this and I am hoping to release the first version in the following weeks. If you have any feature suggestions feel free to reach me at: josefcorojas@gmail.com
+## Usage
+
+*csv_converter* supports more advanced data conversions, processing data based on column position instead of headers and nested records within a column.
+
+Please refer to the [*wiki page*](https://github.com/francisco-rojas/csv_converter/wiki) for further instructions and more advanced examples.
 
 ## Installation
 
@@ -160,16 +116,17 @@ Or install it yourself as:
 
     $ gem install csv_converter
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Currently, the library is stable. I believe it supports the most common use cases so most likely the code won't be updated very frequently. However, if you have any feature requests or find a bug feel free to open a github issue and I will reply as soon as I can.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+- for **feature requests** please use the **enhancement** label.
+- for **bugs** please use the **bugs** label.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/csv_converter.
+Bug reports and pull requests are welcome on GitHub at https://github.com/francisco-rojas/csv_converter
+
+## License
+
+MIT License. Copyright 2019 Francisco Rojas. https://github.com/francisco-rojas
