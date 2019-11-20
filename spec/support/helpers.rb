@@ -10,7 +10,7 @@ module CSVConverter
 
     def load_yml(filename)
       path = file_fixture(filename)
-      YAML.load_file(path).deep_symbolize_keys[:mappings]
+      YAML.load_file(path)['mappings']
     end
 
     def file_scenarios

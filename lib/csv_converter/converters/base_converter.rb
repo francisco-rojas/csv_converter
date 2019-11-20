@@ -21,9 +21,9 @@ module CSVConverter
         @data ||= begin
           return raw_data if raw_data.present? && !empty_value?
 
-          return nullable_object if options.dig(:defaults).blank?
+          return nullable_object if options.dig(:default).blank?
 
-          options.dig(:defaults)
+          options.dig(:default)
         end
       end
 

@@ -8,7 +8,7 @@ module CSVConverter
     def initialize(filename, rows, file_mappings)
       @filename       = filename
       @rows           = rows
-      @file_mappings  = file_mappings
+      @file_mappings  = file_mappings.with_indifferent_access
     end
 
     def call
@@ -31,7 +31,7 @@ module CSVConverter
         options = { filename: filename, row_num: row_num, entity: entity, row: row }
         processor = CSVConverter::EntityProcessor.new(row, entity_mappings, options)
         hash[entity] = yield(processor)
-      end
+      end.with_indifferent_access
     end
   end
 end

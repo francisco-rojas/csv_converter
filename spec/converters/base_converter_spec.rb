@@ -64,15 +64,15 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
       end
     end
 
-    describe 'when options[:defaults] provided' do
+    describe 'when options[:default] provided' do
       let(:options) do
-        { defaults: 'LoremIpsum' }
+        { default: 'LoremIpsum' }
       end
 
       context 'when nil object provided' do
         subject { SampleConverter.new(nil, options) }
 
-        it 'returns the defaults' do
+        it 'returns the default' do
           expect(subject.call).to eq 'LoremIpsum'
         end
       end
@@ -80,7 +80,7 @@ RSpec.describe CSVConverter::Converters::BaseConverter do
       context 'when empty string provided' do
         subject { SampleConverter.new('', options) }
 
-        it 'returns the defaults' do
+        it 'returns the default' do
           expect(subject.call).to eq 'LoremIpsum'
         end
       end
