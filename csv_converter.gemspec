@@ -10,13 +10,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Francisco Rojas']
   spec.email         = ['josefcorojas@gmail.com']
 
-  spec.summary       = 'This gem makes simplifies the process of adapting CSV data prior to importing it to a database.'
-  spec.description   = 'This gem makes simplifies the process of adapting CSV data prior to importing it to a database.'
+  spec.summary       = 'Groups and converts tabulated data'
+  spec.description   = 'Groups and converts tabulated data based on the mappings provided'
   spec.homepage      = 'https://github.com/francisco-rojas/csv_converter'
+  spec.license       = 'MIT'
 
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/francisco-rojas/csv_converter'
-  spec.metadata['changelog_uri'] = 'https://github.com/francisco-rojas/csv_converter/CHANGELOG.md'
+  spec.metadata['homepage_uri']     = spec.homepage
+  spec.metadata['wiki_uri']         = 'https://github.com/francisco-rojas/csv_converter/wiki'
+  spec.metadata['source_code_uri']  = 'https://github.com/francisco-rojas/csv_converter'
+  spec.metadata['changelog_uri']    = 'https://github.com/francisco-rojas/csv_converter/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
