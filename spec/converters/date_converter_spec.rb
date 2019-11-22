@@ -3,7 +3,10 @@
 RSpec.describe CSVConverter::Converters::DateConverter do
   describe 'when NO date format provided' do
     it 'throws an error on initialization' do
-      expect { described_class.new('10/18/14') }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('10/18/14', {}) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('10/18/14', nil) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('10/18/14', date_format: nil) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('10/18/14', date_format: '') }.to raise_error(CSVConverter::Error)
     end
   end
 

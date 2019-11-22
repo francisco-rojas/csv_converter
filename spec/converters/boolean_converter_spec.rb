@@ -3,7 +3,9 @@
 RSpec.describe CSVConverter::Converters::BooleanConverter do
   describe 'when NO truthy values provided' do
     it 'raises an error' do
-      expect { described_class.new('yes') }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('yes', {}) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('yes', truthy_values: []) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('yes', nil) }.to raise_error(CSVConverter::Error)
     end
   end
 

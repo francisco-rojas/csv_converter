@@ -1,22 +1,43 @@
 # frozen_string_literal: true
 
 module CSVConverter
-  # Iterates over the rows of a file and processes the data accordingly
+  # Iterates over a collection and processes the data accordingly.
   class FileProcessor
-    attr_reader :filename, :rows, :file_mappings
+    # Name of the file being processed.
+    # @return [String] the name of the file.
+    attr_reader :filename
 
+    # Collection being processed.
+    # @return [Array] collection of rows being processed.
+    attr_reader :rows
+
+    # File mappings.
+    # @return [Hash] configuration used to process the data.
+    attr_reader :file_mappings
+
+    # A new instance of FileProcessor.
+    # @param filename (@see #filename)
+    # @param rows (@see #rows)
+    # @param file_mappings (@see #file_mappings)
     def initialize(filename, rows, file_mappings)
       @filename       = filename
       @rows           = rows
       @file_mappings  = file_mappings.with_indifferent_access
     end
 
+    # Iterates over the rows grouping and converting the data as expected based on the mappings.
+    # @return [Array] Collection of hashes containing the entities obtained after processing the rows.
+    #   If an error occurs while processing the error is rescued and nullable values returned for the
+    #   attributes that caused the error.
     def call
       rows.map.with_index do |row, row_num|
         process_entities(row, row_num, &:call)
       end
     end
 
+    # Iterates over the rows grouping and converting the data as expected based on the mappings.
+    # @return [Array] Collection of hashes containing the entities obtained after processing the rows.
+    #   If an error occurs while processing the rows an error is raised.
     def call!
       rows.map.with_index do |row, row_num|
         process_entities(row, row_num, &:call!)

@@ -23,15 +23,26 @@ require 'csv_converter/file_processor'
 require 'csv_converter/entity_processor'
 require 'csv_converter/attribute_processor'
 
-# CSVConverter transforms and groups raw data from csv files according to the config provided
+# CSVConverter groups and transforms tabulated data contained in files such as csv or spreadsheets.
 module CSVConverter
-  # Error holds error messages as well as information about the file, row and column being processed
+  # Error holds error messages as well as details of the data being processed.
   class Error < StandardError
+    # Details of the data being processed when the error happened. By default this includes:
+    #   filename: the name of the file being processed
+    #   row_num: number of the row being processed
+    #   entity: the name of the entity being processed as provided in the mappings
+    #   row: the raw data of the row being processed
+    #   attr: the name of the attribute being processed as provided in the mappings
+    # Additionally it contains all the options provided to the converter in the mappings.
+    # @return [Hash]
     attr_reader :details
 
-    def initialize(msg, details = {})
+    # A new instance of Error.
+    # @param message [String] the error description
+    # @param details [Hash] info about the data being proccesed at the time of the error
+    def initialize(message, details = {})
       @details = details
-      super("#{msg} on: #{details}")
+      super("#{message} on: #{details}")
     end
   end
 
@@ -48,14 +59,25 @@ module CSVConverter
     uppercase: 'CSVConverter::Converters::UppercaseConverter'
   }.with_indifferent_access
 
+  # When no custom aliases are included it returns CSVConverter::ALIASES.
+  # When custom converter alises are included it returns the whole list of aliases.
+  # @return [Hash] list of aliases for each converter class.
   def self.aliases
     @aliases || ALIASES
   end
 
+  # Adds an alias to the list of aliases
+  # @param new_alias [Symbol, String] the name of the alias
+  # @param klass [Symbol, String] class name of the converter
+  # @return (@see #aliases)
   def self.add_alias(new_alias, klass)
     @aliases = aliases.merge(new_alias.to_sym => klass.to_s)
   end
 
+  # Adds one or more alieases to the list of aliases
+  # @param new_aliases [Hash] list of aliases to append to the list,
+  #   where the key is the name of the alias and the value is the class name of the converter
+  # @return (@see #aliases)
   def self.add_aliases(new_aliases)
     @aliases = aliases.merge(new_aliases)
   end

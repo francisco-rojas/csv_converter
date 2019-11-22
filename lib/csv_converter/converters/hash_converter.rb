@@ -4,18 +4,30 @@ module CSVConverter
   module Converters
     # Converts a string with key pair values into ruby hashes
     class HashConverter < BaseConverter
+      # A new instance of HashConverter.
+      # @param raw_data [String] the raw data of the attribute being processed.
+      # @param options [Hash] the options for the converter provided in the mappings.
+      #   Additionally, contains the details of the data being processed. See BaseConverter#option.
+      #   The *item_separator* key is required. If *item_separator* is nil then an error is raised.
+      #   The *key_value_separator* key is required. If *key_value_separator* is nil then an error is raised.
       def initialize(raw_data, options = {})
         super(raw_data, options)
 
-        validate
+        validate_options
       end
 
+      # Converts *data* into a hash by splitting the string on the *item_separator* to get the items
+      # and then by spliting the items on *key_value_separator* to get the key/value.
+      # @return [Hash] if an error occurs during conversion an empty hash is returned.
       def call
         call!
       rescue CSVConverter::Error
         nullable_object
       end
 
+      # Converts *data* into a hash by splitting the string on the *item_separator* to get the items
+      # and then by spliting the items on *key_value_separator* to get the key/value.
+      # @return [Hash] if an error occurs during conversion an error is raised.
       def call!
         data.split(options[:item_separator]).map do |items|
           items.split(options[:key_value_separator]).map(&:strip)
@@ -26,7 +38,7 @@ module CSVConverter
 
       private
 
-      def validate
+      def validate_options
         validate_separator
         validate_key_value_separator
       end

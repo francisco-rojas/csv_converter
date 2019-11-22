@@ -3,9 +3,9 @@
 RSpec.describe CSVConverter::Converters::ArrayConverter do
   describe 'when separator NOT provided' do
     it 'raises an error' do
-      expect do
-        described_class.new('item1, item2, item3')
-      end.to raise_error(CSVConverter::Error)
+      expect { described_class.new('item1, item2, item3', {}) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('item1, item2, item3', separator: nil) }.to raise_error(CSVConverter::Error)
+      expect { described_class.new('item1, item2, item3', nil) }.to raise_error(CSVConverter::Error)
     end
   end
 
@@ -16,6 +16,14 @@ RSpec.describe CSVConverter::Converters::ArrayConverter do
 
         it 'splits the string into an array' do
           expect(subject.call).to eq ['item 1', 'item 2', 'item 3']
+        end
+      end
+
+      context 'with whitespace separator' do
+        subject { described_class.new('item1 item2 item3', separator: ' ') }
+
+        it 'splits the string into an array' do
+          expect(subject.call).to eq %w[item1 item2 item3]
         end
       end
 

@@ -1,20 +1,47 @@
 # frozen_string_literal: true
 
 module CSVConverter
-  # Iterates over the columns of a row and processes the data accordingly
+  # Iterates over the columns of a row and processes the data accordingly.
   class EntityProcessor
-    attr_reader :row, :entity_mappings, :options
+    # The row being processed.
+    # @return [Array, Hash]
+    attr_reader :row
 
+    # Entity mappings.
+    # @return [Hash] configuration used to process the data.
+    attr_reader :entity_mappings
+
+    # Details of the data being processed. By default this includes:
+    #   filename: the name of the file being processed.
+    #   row_num: number of the row being processed.
+    #   entity: the name of the entity being processed as provided in the mappings.
+    #   row: the raw data of the row being processed.
+    #   attr: the name of the attribute being processed as provided in the mappings.
+    # Additionally it will contain all the options provided to the converter in the mappings.
+    # @return [Hash]
+    attr_reader :options
+
+    # A new instance of EntityProcessor.
+    # @param row (@see #row)
+    # @param entity_mappings (@see #entity_mappings)
+    # @param options (@see #options)
     def initialize(row, entity_mappings, options = {})
       @row              = row
       @entity_mappings  = entity_mappings
       @options          = options
     end
 
+    # Iterates over the attributes of each entity converting the data into the format expected by the mappings.
+    # @return [Hash] the attributes for each entity.
+    #   If an error occurs while processing the error is rescued and nullable values returned for the
+    #   attributes that caused the error.
     def call
       entity_attrs(&:call)
     end
 
+    # Iterates over the attributes of each entity converting the data into the format expected by the mappings.
+    # @return [Hash] the attributes for each entity.
+    #   If an error occurs while processing the an error is raised.
     def call!
       entity_attrs(&:call!)
     end
