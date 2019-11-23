@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'byebug', '~> 11.0'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rb-readline'
+  spec.add_development_dependency 'rb-readline', '~> 0.5'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.75'
 end

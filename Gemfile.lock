@@ -62,7 +62,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   csv_converter!
   rake (~> 10.0)
-  rb-readline
+  rb-readline (~> 0.5)
   rspec (~> 3.0)
   rubocop (~> 0.75)
 
