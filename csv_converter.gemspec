@@ -14,9 +14,11 @@ Gem::Specification.new do |spec|
   spec.description   = 'Groups and converts tabulated data based on the mappings provided'
   spec.homepage      = 'https://github.com/francisco-rojas/csv_converter'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.5'
 
   spec.metadata['homepage_uri']     = spec.homepage
   spec.metadata['wiki_uri']         = 'https://github.com/francisco-rojas/csv_converter/wiki'
+  spec.metadata['docs_uri']         = 'https://github.com/francisco-rojas/csv_converter/wiki'
   spec.metadata['source_code_uri']  = 'https://github.com/francisco-rojas/csv_converter'
   spec.metadata['changelog_uri']    = 'https://github.com/francisco-rojas/csv_converter/CHANGELOG.md'
 

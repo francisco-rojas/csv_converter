@@ -116,6 +116,19 @@ Or install it yourself as:
 
     $ gem install csv_converter
 
+## Documentation
+You can view the csv_converter documentation in RDoc format here:
+
+https://rubydoc.info/github/francisco-rojas/csv_converter/master
+
+You can also view the wiki here:
+
+https://github.com/francisco-rojas/csv_converter/wiki
+
+Finally, you can check the Readme and source code here:
+
+https://github.com/francisco-rojas/csv_converter
+
 ## Development
 
 Currently, the library is stable. I believe it supports the most common use cases so most likely the code won't be updated very frequently. However, if you have any feature requests or find a bug feel free to open a github issue and I will reply as soon as I can.

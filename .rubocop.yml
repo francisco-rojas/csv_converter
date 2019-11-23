@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.5
 
 Metrics/LineLength:
   Max: 120
@@ -7,6 +7,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'csv_converter.gemspec'
 
 Metrics/MethodLength:
   Exclude:
